@@ -63,7 +63,6 @@ import { BackenderrorComponent } from './featureModule/error/500/backenderror/ba
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    // MatSnackBarModule,
     MatInputModule,
     BrowserAnimationsModule,
     NgxDropzoneModule,

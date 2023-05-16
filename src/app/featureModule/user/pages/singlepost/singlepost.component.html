@@ -34,13 +34,7 @@
                     + Create new post
                 </a>
             </li>
-            <!-- <li>
-                <a href=""
-                    class="flex justify-center items-center p-2 text-gray-900 rounded-lg dark:text-black hover:bg-sky-100 text-center"
-                    style="background-color: rgb(164, 255, 255);">
-                    Upgrade
-                </a>
-            </li> -->
+           
 
             <li>
                 <a routerLink="/"
@@ -68,7 +62,7 @@
                 </a>
             </li>
             <li>
-                <a routerLink=""
+                <a routerLink="/listing"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-black hover:bg-sky-100 ">
                     <svg class="icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" id="list">
                         <path fill="#ffa88a"
@@ -107,7 +101,7 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-black hover:bg-sky-100 ">
+                <a routerLink="/tags" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-black hover:bg-sky-100 ">
                     <svg class="icons" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 512 512"
                         id="hang-tags">
                         <rect width="190" height="283" x="7.5" y="221.5" fill="#7dc7a2" rx="15"></rect>
@@ -156,7 +150,7 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-black hover:bg-sky-100 ">
+                <a routerLink="/readinglist" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-black hover:bg-sky-100 ">
                     <svg class="icons" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 512 512"
                         viewBox="0 0 512 512" id="books">
                         <path fill="#9bc47c"
@@ -222,39 +216,7 @@
 
 <main class="main  w-full h-full  bg-white dark:bg-gray-900 flex flex-row justify-end">
     <div class="reaction-drawer__outer hoverdown pl-3 like">
-        <!-- <button (click)="like()" id="reaction-drawer-trigger" aria-label="reaction-drawer-trigger" aria-pressed="false"
-            class="hoverdown-trigger crayons-reaction pseudo-reaction crayons-tooltip__activator relative user-activated user-animated"
-            fdprocessedid="9v0f12"> -->
-            <!-- <span
-                class="crayons-reaction__icon crayons-reaction__icon--borderless crayons-reaction--like crayons-reaction__icon--inactive"
-                style="width: 40px; height: 40px">
-                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none"
-                    role="img" aria-hidden="true" class="crayons-icon">
-                    <g clip-path="url(#clip0_988_3276)">
-                        <path
-                            d="M19 14V17H22V19H18.999L19 22H17L16.999 19H14V17H17V14H19ZM20.243 4.75698C22.505 7.02498 22.583 10.637 20.479 12.992L19.059 11.574C20.39 10.05 20.32 7.65998 18.827 6.16998C17.324 4.67098 14.907 4.60698 13.337 6.01698L12.002 7.21498L10.666 6.01798C9.09103 4.60598 6.67503 4.66798 5.17203 6.17198C3.68203 7.66198 3.60703 10.047 4.98003 11.623L13.412 20.069L12 21.485L3.52003 12.993C1.41603 10.637 1.49503 7.01898 3.75603 4.75698C6.02103 2.49298 9.64403 2.41698 12 4.52898C14.349 2.41998 17.979 2.48998 20.242 4.75698H20.243Z"
-                            fill="#525252"></path>
-                    </g>
-                    <defs>
-                        <clipPath id="clip0_988_3276">
-                            <rect width="24" height="24" fill="white"></rect>
-                        </clipPath>
-                    </defs>
-                </svg>
-
-            </span> -->
-            <!-- <span
-                class="crayons-reaction__icon crayons-reaction__icon--borderless crayons-reaction__icon--active"
-                style="width: 40px; height: 40px">
-                <img aria_hidden="true" height="35" width="35"  data-te-toggle="tooltip"
-                title="Add Reaction"
-                    src="https://dev.to/assets/heart-plus-active-9ea3b22f2bc311281db911d416166c5f430636e76b15cd5df6b3b841d830eefa.svg">
-            </span>
-            <span class="crayons-reaction__count" id="reaction_total_count">{{postdetailsData.likes.length}}</span>
-        </button> -->
-       
-              
-            
+     
                 <input type="checkbox" id="checkbox" (click)="toggleLike()" [checked]="likes"/>
                 <label for="checkbox">
                   <svg id="heart-svg" viewBox="467 392 58 57" xmlns="http://www.w3.org/2000/svg">
@@ -313,7 +275,7 @@
                 <header class="mb-4 lg:mb-6 not-format ">
                         <address class="flex items-center mb-6 not-italic ">
                             <div  class="inline-flex items-center mr-3 text-sm text-gray-900  ">
-                                <img *ngIf="postdetailsData?.userId?.image else image"  class="mr-4 w-12 h-12 rounded-full" [src]="postdetailsData?.userId?.image"
+                                <img *ngIf="postdetailsData?.userId?.image ||postdetailsData?.userId?.googleimage else image"  class="mr-4 w-12 h-12 rounded-full" [src]="postdetailsData?.userId?.googleimage ?postdetailsData?.userId?.googleimage : 'http://localhost:4000/images/'+postdetailsData?.userId?.image"
                                     alt="Jese Leos">
                                         <ng-template #image>
                                         <img class="mr-4 w-12 h-12 rounded-full" src="https://www.pngmart.com/files/22/User-Avatar-Profile-Background-Isolated-PNG.png" alt="">
@@ -329,9 +291,7 @@
                             </div>
                         </address>
                     </header>
-                    <!-- <p class="mt-2 font-medium text-black">
-                        <span>{{postdetailsData.tag | json}}</span>
-                    </p> -->
+                  
                     <p>
                         <span class='text-black' *ngFor="let tag of postdetailsData?.tag ">
                             #{{tag?.title}}
@@ -430,441 +390,11 @@
                     </div>
                   </div>
                 </div>
-                  <!-- <article class="p-6 mb-6 text-base bg-white border-t border-gray-200 dark:border-gray-700 dark:bg-gray-900">
-                      <footer class="flex justify-between items-center mb-2">
-                          <div class="flex items-center">
-                              <p class="inline-flex items-center mr-3 text-sm text-gray-900 "><img
-                                      class="mr-2 w-6 h-6 rounded-full"
-                                      src="https://flowbite.com/docs/images/people/profile-picture-3.jpg"
-                                      alt="Bonnie Green">Bonnie Green</p>
-                              <p class="text-sm text-gray-600 dark:text-gray-400"><time pubdate datetime="2022-03-12"
-                                      title="March 12th, 2022">Mar. 12, 2022</time></p>
-                          </div>
-                          <button id="dropdownComment3Button" data-dropdown-toggle="dropdownComment3"
-                              class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                              type="button">
-                              <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
-                                  xmlns="http://www.w3.org/2000/svg">
-                                  <path
-                                      d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z">
-                                  </path>
-                              </svg>
-                              <span class="sr-only">Comment settings</span>
-                          </button>
-                         
-                          <div id="dropdownComment3"
-                              class="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
-                              <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
-                                  aria-labelledby="dropdownMenuIconHorizontalButton">
-                                  <li>
-                                      <a href="#"
-                                          class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
-                                  </li>
-                                  <li>
-                                      <a href="#"
-                                          class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Remove</a>
-                                  </li>
-                                  <li>
-                                      <a href="#"
-                                          class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Report</a>
-                                  </li>
-                              </ul>
-                          </div>
-                      </footer>
-                      <p class="text-gray-500 dark:text-gray-400">The article covers the essentials, challenges, myths and stages the UX designer should consider while creating the design strategy.</p>
-                      <div class="flex items-center mt-4 space-x-4">
-                          <button type="button"
-                              class="flex items-center text-sm text-gray-500 hover:underline dark:text-gray-400">
-                              <svg aria-hidden="true" class="mr-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
-                              Reply
-                          </button>
-                      </div>
-                  </article> -->
-                  <!-- <article class="p-6 text-base bg-white border-t border-gray-200 dark:border-gray-700 dark:bg-gray-900">
-                      <footer class="flex justify-between items-center mb-2">
-                          <div class="flex items-center">
-                              <p class="inline-flex items-center mr-3 text-sm text-gray-900 "><img
-                                      class="mr-2 w-6 h-6 rounded-full"
-                                      src="https://flowbite.com/docs/images/people/profile-picture-4.jpg"
-                                      alt="Helene Engels">Helene Engels</p>
-                              <p class="text-sm text-gray-600 dark:text-gray-400"><time pubdate datetime="2022-06-23"
-                                      title="June 23rd, 2022">Jun. 23, 2022</time></p>
-                          </div>
-                          <button id="dropdownComment4Button" data-dropdown-toggle="dropdownComment4"
-                              class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                              type="button">
-                              <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
-                                  xmlns="http://www.w3.org/2000/svg">
-                                  <path
-                                      d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z">
-                                  </path>
-                              </svg>
-                          </button>
-
-                          <div id="dropdownComment4"
-                              class="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
-                              <ul class="py-1 text-sm text-black dark:text-gray-200"
-                                  aria-labelledby="dropdownMenuIconHorizontalButton">
-                                  <li>
-                                      <a href="#"
-                                          class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
-                                  </li>
-                                  <li>
-                                      <a href="#"
-                                          class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Remove</a>
-                                  </li>
-                                  <li>
-                                      <a href="#"
-                                          class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Report</a>
-                                  </li>
-                              </ul>
-                          </div>
-                      </footer>
-                      <p class="text-gray-500 dark:text-gray-400">Thanks for sharing this. I do came from the Backend development and explored some of the tools to design my Side Projects.</p>
-                      <div class="flex items-center mt-4 space-x-4">
-                          <button type="button"
-                              class="flex items-center text-sm text-gray-500 hover:underline dark:text-gray-400">
-                              <svg aria-hidden="true" class="mr-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
-                              Reply
-                          </button>
-                      </div>
-                  </article> -->
+                 
                 </div>
               </section>
               
-            <!-- <div
-                class="w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg  sm:p-8 dark:bg-gray-800 dark:border-gray-700">
-                <div class="flex items-center justify-between mb-4">
-                    <h5 class="text-xl font-bold leading-none text-gray-900 ">Latest Customers</h5>
-                    <a href="#" class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
-                        View all
-                    </a>
-                </div>
-                <div class="flow-root">
-                    <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
-                        <li class="py-3 sm:py-4">
-                            <div class="flex items-center space-x-4">
-                                <div class="flex-shrink-0">
-                                    <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-1.jpg"
-                                        alt="Neil image">
-                                </div>
-                                <div class="flex-1 min-w-0">
-                                    <p class="text-sm font-medium text-gray-900 truncate ">
-                                        Neil Sims
-                                    </p>
-                                    <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                        email@windster.com
-                                    </p>
-                                </div>
-                                <div
-                                    class="inline-flex items-center text-base font-semibold text-gray-900 ">
-                                    $320
-                                </div>
-                            </div>
-                        </li>
-                        <li class="py-3 sm:py-4">
-                            <div class="flex items-center space-x-4">
-                                <div class="flex-shrink-0">
-                                    <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-1.jpg"
-                                        alt="Neil image">
-                                </div>
-                                <div class="flex-1 min-w-0">
-                                    <p class="text-sm font-medium text-gray-900 truncate ">
-                                        Neil Sims
-                                    </p>
-                                    <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                        email@windster.com
-                                    </p>
-                                </div>
-                                <div
-                                    class="inline-flex items-center text-base font-semibold text-gray-900 ">
-                                    $320
-                                </div>
-                            </div>
-                        </li>
-                        <li class="py-3 sm:py-4">
-                            <div class="flex items-center space-x-4">
-                                <div class="flex-shrink-0">
-                                    <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-1.jpg"
-                                        alt="Neil image">
-                                </div>
-                                <div class="flex-1 min-w-0">
-                                    <p class="text-sm font-medium text-gray-900 truncate ">
-                                        Neil Sims
-                                    </p>
-                                    <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                        email@windster.com
-                                    </p>
-                                </div>
-                                <div
-                                    class="inline-flex items-center text-base font-semibold text-gray-900 ">
-                                    $320
-                                </div>
-                            </div>
-                        </li>
-                        <li class="py-3 sm:py-4">
-                            <div class="flex items-center space-x-4">
-                                <div class="flex-shrink-0">
-                                    <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-1.jpg"
-                                        alt="Neil image">
-                                </div>
-                                <div class="flex-1 min-w-0">
-                                    <p class="text-sm font-medium text-gray-900 truncate ">
-                                        Neil Sims
-                                    </p>
-                                    <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                        email@windster.com
-                                    </p>
-                                </div>
-                                <div
-                                    class="inline-flex items-center text-base font-semibold text-gray-900 ">
-                                    $320
-                                </div>
-                            </div>
-                        </li>
-                        <li class="py-3 sm:py-4">
-                            <div class="flex items-center space-x-4">
-                                <div class="flex-shrink-0">
-                                    <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-1.jpg"
-                                        alt="Neil image">
-                                </div>
-                                <div class="flex-1 min-w-0">
-                                    <p class="text-sm font-medium text-gray-900 truncate ">
-                                        Neil Sims
-                                    </p>
-                                    <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                        email@windster.com
-                                    </p>
-                                </div>
-                                <div
-                                    class="inline-flex items-center text-base font-semibold text-gray-900 ">
-                                    $320
-                                </div>
-                            </div>
-                        </li>
-                        <li class="py-3 sm:py-4">
-                            <div class="flex items-center space-x-4">
-                                <div class="flex-shrink-0">
-                                    <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-1.jpg"
-                                        alt="Neil image">
-                                </div>
-                                <div class="flex-1 min-w-0">
-                                    <p class="text-sm font-medium text-gray-900 truncate ">
-                                        Neil Sims
-                                    </p>
-                                    <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                        email@windster.com
-                                    </p>
-                                </div>
-                                <div
-                                    class="inline-flex items-center text-base font-semibold text-gray-900 ">
-                                    $320
-                                </div>
-                            </div>
-                        </li>
-                        <li class="py-3 sm:py-4">
-                            <div class="flex items-center space-x-4">
-                                <div class="flex-shrink-0">
-                                    <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-1.jpg"
-                                        alt="Neil image">
-                                </div>
-                                <div class="flex-1 min-w-0">
-                                    <p class="text-sm font-medium text-gray-900 truncate ">
-                                        Neil Sims
-                                    </p>
-                                    <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                        email@windster.com
-                                    </p>
-                                </div>
-                                <div
-                                    class="inline-flex items-center text-base font-semibold text-gray-900 ">
-                                    $320
-                                </div>
-                            </div>
-                        </li>
-                        <li class="py-3 sm:py-4">
-                            <div class="flex items-center space-x-4">
-                                <div class="flex-shrink-0">
-                                    <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-1.jpg"
-                                        alt="Neil image">
-                                </div>
-                                <div class="flex-1 min-w-0">
-                                    <p class="text-sm font-medium text-gray-900 truncate ">
-                                        Neil Sims
-                                    </p>
-                                    <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                        email@windster.com
-                                    </p>
-                                </div>
-                                <div
-                                    class="inline-flex items-center text-base font-semibold text-gray-900 ">
-                                    $320
-                                </div>
-                            </div>
-                        </li>
-                        <li class="py-3 sm:py-4">
-                            <div class="flex items-center space-x-4">
-                                <div class="flex-shrink-0">
-                                    <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-1.jpg"
-                                        alt="Neil image">
-                                </div>
-                                <div class="flex-1 min-w-0">
-                                    <p class="text-sm font-medium text-gray-900 truncate ">
-                                        Neil Sims
-                                    </p>
-                                    <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                        email@windster.com
-                                    </p>
-                                </div>
-                                <div
-                                    class="inline-flex items-center text-base font-semibold text-gray-900 ">
-                                    $320
-                                </div>
-                            </div>
-                        </li>
-                        <li class="py-3 sm:py-4">
-                            <div class="flex items-center space-x-4">
-                                <div class="flex-shrink-0">
-                                    <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-1.jpg"
-                                        alt="Neil image">
-                                </div>
-                                <div class="flex-1 min-w-0">
-                                    <p class="text-sm font-medium text-gray-900 truncate ">
-                                        Neil Sims
-                                    </p>
-                                    <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                        email@windster.com
-                                    </p>
-                                </div>
-                                <div
-                                    class="inline-flex items-center text-base font-semibold text-gray-900 ">
-                                    $320
-                                </div>
-                            </div>
-                        </li>
-                        <li class="py-3 sm:py-4">
-                            <div class="flex items-center space-x-4">
-                                <div class="flex-shrink-0">
-                                    <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-1.jpg"
-                                        alt="Neil image">
-                                </div>
-                                <div class="flex-1 min-w-0">
-                                    <p class="text-sm font-medium text-gray-900 truncate ">
-                                        Neil Sims
-                                    </p>
-                                    <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                        email@windster.com
-                                    </p>
-                                </div>
-                                <div
-                                    class="inline-flex items-center text-base font-semibold text-gray-900 ">
-                                    $320
-                                </div>
-                            </div>
-                        </li>
-                        <li class="py-3 sm:py-4">
-                            <div class="flex items-center space-x-4">
-                                <div class="flex-shrink-0">
-                                    <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-1.jpg"
-                                        alt="Neil image">
-                                </div>
-                                <div class="flex-1 min-w-0">
-                                    <p class="text-sm font-medium text-gray-900 truncate ">
-                                        Neil Sims
-                                    </p>
-                                    <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                        email@windster.com
-                                    </p>
-                                </div>
-                                <div
-                                    class="inline-flex items-center text-base font-semibold text-gray-900 ">
-                                    $320
-                                </div>
-                            </div>
-                        </li>
-                        <li class="py-3 sm:py-4">
-                            <div class="flex items-center space-x-4">
-                                <div class="flex-shrink-0">
-                                    <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-3.jpg"
-                                        alt="Bonnie image">
-                                </div>
-                                <div class="flex-1 min-w-0">
-                                    <p class="text-sm font-medium text-gray-900 truncate ">
-                                        Bonnie Green
-                                    </p>
-                                    <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                        email@windster.com
-                                    </p>
-                                </div>
-                                <div
-                                    class="inline-flex items-center text-base font-semibold text-gray-900 ">
-                                    $3467
-                                </div>
-                            </div>
-                        </li>
-                        <li class="py-3 sm:py-4">
-                            <div class="flex items-center space-x-4">
-                                <div class="flex-shrink-0">
-                                    <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-2.jpg"
-                                        alt="Michael image">
-                                </div>
-                                <div class="flex-1 min-w-0">
-                                    <p class="text-sm font-medium text-gray-900 truncate ">
-                                        Michael Gough
-                                    </p>
-                                    <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                        email@windster.com
-                                    </p>
-                                </div>
-                                <div
-                                    class="inline-flex items-center text-base font-semibold text-gray-900 ">
-                                    $67
-                                </div>
-                            </div>
-                        </li>
-                        <li class="py-3 sm:py-4">
-                            <div class="flex items-center space-x-4">
-                                <div class="flex-shrink-0">
-                                    <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-4.jpg"
-                                        alt="Lana image">
-                                </div>
-                                <div class="flex-1 min-w-0">
-                                    <p class="text-sm font-medium text-gray-900 truncate ">
-                                        Lana Byrd
-                                    </p>
-                                    <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                        email@windster.com
-                                    </p>
-                                </div>
-                                <div
-                                    class="inline-flex items-center text-base font-semibold text-gray-900 ">
-                                    $367
-                                </div>
-                            </div>
-                        </li>
-                        <li class="pt-3 pb-0 sm:pt-4">
-                            <div class="flex items-center space-x-4">
-                                <div class="flex-shrink-0">
-                                    <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-5.jpg"
-                                        alt="Thomas image">
-                                </div>
-                                <div class="flex-1 min-w-0">
-                                    <p class="text-sm font-medium text-gray-900 truncate ">
-                                        Thomes Lean
-                                    </p>
-                                    <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                        email@windster.com
-                                    </p>
-                                </div>
-                                <div
-                                    class="inline-flex items-center text-base font-semibold text-gray-900 ">
-                                    $2367
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div> -->
+            
         </div>
     </div>
 </main>
