@@ -1,0 +1,112 @@
+<!-- component -->
+<div class="flex-1 p:2 sm:p-6 justify-between flex flex-col h-screen">
+   <div class="flex sm:items-center justify-between py-3 border-b-2 border-gray-200">
+      <div class="relative flex items-center space-x-4">
+         <div class="relative">
+            <span class="absolute text-green-500 right-0 bottom-0">
+               <svg width="20" height="20">
+                  <circle cx="8" cy="8" r="8" fill="currentColor"></circle>
+               </svg>
+            </span>
+         <img *ngIf="userData[0].image || userData[0].googleimage else image" [src]="userData[0]?.image" [src]="userData[0]?.googleimage ? userData[0]?.googleimage : 'http://localhost:4000/images/'+userData[0]?.image" alt="" class="w-10 sm:w-16 h-10 sm:h-16 rounded-full">
+         <ng-template #image>
+            <img class="w-10 sm:w-16 h-10 sm:h-16 rounded-full" src="https://www.pngmart.com/files/22/User-Avatar-Profile-Background-Isolated-PNG.png" alt="">
+        </ng-template>
+         </div>
+         <div class="flex flex-col leading-tight">
+            <div class="text-2xl mt-1 flex items-center">
+               <span class="text-gray-700 mr-3 uppercase">{{userData[0]?.userName}}</span>
+            </div>
+         </div>
+      </div>
+      <div class="flex items-center space-x-2">
+        
+      </div>
+   </div>
+   <div id="messages" class="flex flex-col space-y-4 p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch" style="height: 100%;">
+      
+
+      <div *ngFor="let message of chatmessage?.messages">
+         <div class="chat-message" *ngIf="message.sender._id==id else elseBlock">
+            <div class="flex items-end justify-end">
+               <div class="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-1 items-end">
+                  <div><span class="px-4 py-2 rounded-lg inline-block rounded-br-none bg-green-400 text-white ">{{message?.text}}</span><p class="flex justify-end"><small>{{gettime(message.time)}}</small></p>
+                  </div>
+                 </div>
+                 <img *ngIf="message.sender?.image || message.sender?.googleimage else image" [src]="message.sender.googleimage ? message.sender.googleimage : 'http://localhost:4000/images/'+message.sender?.image" alt="My profile" class="w-6 h-6 rounded-full order-2">
+                 <ng-template #image>
+                  <img class="w-6 h-6 rounded-full order-2" src="https://www.pngmart.com/files/22/User-Avatar-Profile-Background-Isolated-PNG.png" alt="">
+              </ng-template>
+              </div>
+           </div>
+           <ng-template #elseBlock> 
+              <div class="chat-message">
+                 <div class="flex items-end">
+                    <div class="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-2 items-start">
+                     
+                       <div><span class="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 text-gray-600">{{message?.text}}</span><p class="flex justify-start"><small>{{gettime(message?.time)}}</small></p></div>
+                    </div>
+                    <img *ngIf="message.sender?.image || message.sender?.googleimage else image"  [src]="message.sender.googleimage ? message.sender.googleimage : 'http://localhost:4000/images/'+message.sender?.image" alt="My profile" class="w-6 h-6 rounded-full order-1">
+                    <ng-template #image>
+                     <img class="w-6 h-6 rounded-full order-1" src="https://www.pngmart.com/files/22/User-Avatar-Profile-Background-Isolated-PNG.png" alt="">
+                 </ng-template>
+                 </div>
+              </div>
+           </ng-template>
+        </div>
+
+
+   </div>
+   <div class="border-t-2 border-gray-200 px-4 pt-4 mb-2 sm:mb-0">
+      <emoji-mart class="emoji-mart" *ngIf="isEmojiPickerVisible" [darkMode]="false"  [isNative]="true" (emojiSelect)="addEmoji($event)" title="Choose your emoji"></emoji-mart>
+      <form #f="ngForm" (ngSubmit)="send_message(f)">
+         <div class="relative flex">
+            <button type="button" (click)="isEmojiPickerVisible=!isEmojiPickerVisible"
+              class="p-2 text-gray-500 rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 ">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zm-.464 5.535a1 1 0 10-1.415-1.414 3 3 0 01-4.242 0 1 1 0 00-1.415 1.414 5 5 0 007.072 0z"
+                  clip-rule="evenodd"></path>
+              </svg>
+            </button>
+            <input type="text" placeholder="Write your message!" [(ngModel)]="message_input" name="message_input" class="w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-12 bg-gray-200 rounded-md py-3">
+            <div class="absolute right-0 items-center inset-y-0 hidden sm:flex">
+               <button type="submit" class="inline-flex items-center justify-center rounded-lg px-4 py-3 transition duration-500 ease-in-out text-white bg-green-500 hover:bg-blue-400 focus:outline-none">
+                  <span class="font-bold">Send</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-6 w-6 ml-2 transform rotate-90">
+                     <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path>
+                  </svg>
+               </button>
+            </div>
+         </div>
+        </form>
+   </div>
+</div>
+
+<style>
+.scrollbar-w-2::-webkit-scrollbar {
+  width: 0.25rem;
+  height: 0.25rem;
+}
+
+.scrollbar-track-blue-lighter::-webkit-scrollbar-track {
+  --bg-opacity: 1;
+  background-color: #f7fafc;
+  background-color: rgba(247, 250, 252, var(--bg-opacity));
+}
+
+.scrollbar-thumb-blue::-webkit-scrollbar-thumb {
+  --bg-opacity: 1;
+  background-color: #edf2f7;
+  background-color: rgba(237, 242, 247, var(--bg-opacity));
+}
+
+.scrollbar-thumb-rounded::-webkit-scrollbar-thumb {
+  border-radius: 0.25rem;
+}
+</style>
+
+<script>
+	const el = document.getElementById('messages')
+	el.scrollTop = el.scrollHeight
+</script>

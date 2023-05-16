@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+.content{
+   padding:0;
+   display: flex;
+   justify-content: center;
+    transform: rotate(-45deg);
+}
+.half{
+background-color: black;
+}
+.rectangle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 65vh;
+    height:65vh;
+    /* border-color: #B1E7FD;
+    border-style: dashed;
+    border-width: 3px; */
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='6' ry='6' stroke='%23B1E7FDFF' stroke-width='10' stroke-dasharray='33%2c 44%2c 17' stroke-dashoffset='51' stroke-linecap='butt'/%3e%3c/svg%3e");
+    border-radius: 6px;
+    transform: rotate(45deg);
+}
+.seconddiv{
+    width: 50%;
+    padding-left:5%;
+    padding-right:5%;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+}
+.input1:focus{
+    border-color: rgb(255, 71, 71) !important;
+    outline: red !important;
+}
+.account1{
+    margin-top: 5px !important;
+}
+input{
+    margin-top: 1vh !important;
+}
+label{
+    font-weight: 500;
+}
+label:focus{
+    color: red;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

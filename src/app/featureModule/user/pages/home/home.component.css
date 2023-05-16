@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import 'smart-webcomponents-angular/source/styles/smart.default.css';
+
+.tagbox{
+    display: flex;
+    flex-wrap: wrap;
+}
+.tag{
+    width: 23rem;
+}
+.content {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+            line-clamp: 4; 
+    -webkit-box-orient: vertical;
+}

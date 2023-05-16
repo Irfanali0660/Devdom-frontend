@@ -1,0 +1,89 @@
+
+<nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+    <div class="px-3 py-3 lg:px-5 lg:pl-3">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center justify-start">
+          <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar" type="button" class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-cyan-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+              <span class="sr-only">Open sidebar</span>
+              <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                 <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
+              </svg>
+           </button>
+          <a routerLink="/" class="flex ml-2 md:mr-24">
+            <!-- <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 mr-3" alt="FlowBite Logo" /> -->
+            <span class="DevDome self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-black px-5">DevDom</span>
+          </a>
+        </div>      
+      </div>
+    </div>
+  </nav>
+  
+  
+  <div class="p-4 sm:mx-20">  
+    <div class=" rounded-md dark:border-gray-700 mt-14 min-h-screen">
+      <p class="text-2xl font-medium">Create new post</p>
+      <div *ngIf="encodedString else button"  class="flex flex-row items-center justify-evenly mb-4">
+        <img  [src]='encodedString' alt="Encoded Image" style="width:100px; max-height: 100px;">  
+    <div class=" flex items-center justify-between">
+      <button class="bg-white  text-gray-800 font-medium py-2 px-4 rounded inline-flex items-center  border border-gray-900">
+        <svg width="23px" height="23px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="Media / Image_01"> <path id="Vector" d="M3.00005 17.0001C3 16.9355 3 16.8689 3 16.8002V7.2002C3 6.08009 3 5.51962 3.21799 5.0918C3.40973 4.71547 3.71547 4.40973 4.0918 4.21799C4.51962 4 5.08009 4 6.2002 4H17.8002C18.9203 4 19.4801 4 19.9079 4.21799C20.2842 4.40973 20.5905 4.71547 20.7822 5.0918C21 5.5192 21 6.07899 21 7.19691V16.8031C21 17.2881 21 17.6679 20.9822 17.9774M3.00005 17.0001C3.00082 17.9884 3.01337 18.5058 3.21799 18.9074C3.40973 19.2837 3.71547 19.5905 4.0918 19.7822C4.5192 20 5.07899 20 6.19691 20H17.8036C18.9215 20 19.4805 20 19.9079 19.7822C20.2842 19.5905 20.5905 19.2837 20.7822 18.9074C20.9055 18.6654 20.959 18.3813 20.9822 17.9774M3.00005 17.0001L7.76798 11.4375L7.76939 11.436C8.19227 10.9426 8.40406 10.6955 8.65527 10.6064C8.87594 10.5282 9.11686 10.53 9.33643 10.6113C9.58664 10.704 9.79506 10.9539 10.2119 11.4541L12.8831 14.6595C13.269 15.1226 13.463 15.3554 13.6986 15.4489C13.9065 15.5313 14.1357 15.5406 14.3501 15.4773C14.5942 15.4053 14.8091 15.1904 15.2388 14.7607L15.7358 14.2637C16.1733 13.8262 16.3921 13.6076 16.6397 13.5361C16.8571 13.4734 17.0896 13.4869 17.2988 13.5732C17.537 13.6716 17.7302 13.9124 18.1167 14.3955L20.9822 17.9774M20.9822 17.9774L21 17.9996M15 10C14.4477 10 14 9.55228 14 9C14 8.44772 14.4477 8 15 8C15.5523 8 16 8.44772 16 9C16 9.55228 15.5523 10 15 10Z" stroke="#000000" stroke-width="0.768" stroke-linecap="round" stroke-linejoin="round"></path> </g> </g></svg>            <label data-te-placement="top" data-te-toggle="tooltip"  title="Use a ratio of 100:42 for best results." class="cursor-pointer crayons-btn crayons-btn--outlined crayons-tooltip__activator">change cover image
+          <input (change)="addimage()" data-testid="cover-image-input" id="cover-image-input" type="file" accept="image/*" class="screen-reader-only scroll-ps-0.5" data-max-file-size-mb="25" style="display: none;">
+        </label>
+      </button>
+      <button (click)="removeimage()" class="bg-white ml-3 text-red-600  font-medium py-2.5 px-4 rounded inline-flex items-center  border border-gray-900">
+        Remove
+      </button>
+    </div>
+      </div>
+      <ng-template #button>
+        <div class="flex items-center pb-3">
+          <button class="bg-white  text-gray-800 font-medium py-2 px-4 rounded inline-flex items-center  border border-gray-900">
+            <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="Media / Image_01"> <path id="Vector" d="M3.00005 17.0001C3 16.9355 3 16.8689 3 16.8002V7.2002C3 6.08009 3 5.51962 3.21799 5.0918C3.40973 4.71547 3.71547 4.40973 4.0918 4.21799C4.51962 4 5.08009 4 6.2002 4H17.8002C18.9203 4 19.4801 4 19.9079 4.21799C20.2842 4.40973 20.5905 4.71547 20.7822 5.0918C21 5.5192 21 6.07899 21 7.19691V16.8031C21 17.2881 21 17.6679 20.9822 17.9774M3.00005 17.0001C3.00082 17.9884 3.01337 18.5058 3.21799 18.9074C3.40973 19.2837 3.71547 19.5905 4.0918 19.7822C4.5192 20 5.07899 20 6.19691 20H17.8036C18.9215 20 19.4805 20 19.9079 19.7822C20.2842 19.5905 20.5905 19.2837 20.7822 18.9074C20.9055 18.6654 20.959 18.3813 20.9822 17.9774M3.00005 17.0001L7.76798 11.4375L7.76939 11.436C8.19227 10.9426 8.40406 10.6955 8.65527 10.6064C8.87594 10.5282 9.11686 10.53 9.33643 10.6113C9.58664 10.704 9.79506 10.9539 10.2119 11.4541L12.8831 14.6595C13.269 15.1226 13.463 15.3554 13.6986 15.4489C13.9065 15.5313 14.1357 15.5406 14.3501 15.4773C14.5942 15.4053 14.8091 15.1904 15.2388 14.7607L15.7358 14.2637C16.1733 13.8262 16.3921 13.6076 16.6397 13.5361C16.8571 13.4734 17.0896 13.4869 17.2988 13.5732C17.537 13.6716 17.7302 13.9124 18.1167 14.3955L20.9822 17.9774M20.9822 17.9774L21 17.9996M15 10C14.4477 10 14 9.55228 14 9C14 8.44772 14.4477 8 15 8C15.5523 8 16 8.44772 16 9C16 9.55228 15.5523 10 15 10Z" stroke="#000000" stroke-width="0.768" stroke-linecap="round" stroke-linejoin="round"></path> </g> </g></svg>            <label data-te-placement="top" data-te-toggle="tooltip"  title="Use a ratio of 100:42 for best results." class="cursor-pointer crayons-btn crayons-btn--outlined crayons-tooltip__activator">Add a cover image
+              <input (change)="addimage()" data-testid="cover-image-input" id="cover-image-input" type="file" accept="image/*" class="screen-reader-only scroll-ps-0.5" data-max-file-size-mb="25" style="display: none;">
+            </label>
+          </button>
+        </div>
+       </ng-template>   
+      <smart-editor  #editor id="editor" [toolbarItems]="toolbarItems" (keyup)="onEditorInput()">
+          <!-- <input type="text" placeholder="NEW POST HEADING" class="heading"> -->
+        </smart-editor>
+      
+        <form>
+          <mat-form-field class="example-chip-list" appearance="fill">
+            <mat-label>Favorite Tags <small>(Maxiumum tag 4)</small></mat-label>
+            <mat-chip-grid #chipGrid aria-label="Fruit selection">
+              <mat-chip-row *ngFor="let fruit of tags" (removed)="remove(fruit)">
+                {{fruit}}
+                <button matChipRemove [attr.aria-label]="'remove ' + fruit">
+                  <mat-icon>cancel</mat-icon>
+                </button>
+              </mat-chip-row>
+            </mat-chip-grid>
+            <input placeholder="New Tags..." #fruitInput [formControl]="tagCtrl"
+              [matChipInputFor]="chipGrid" [matAutocomplete]="auto"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              (matChipInputTokenEnd)="add($event)"/>
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+              <mat-option *ngFor="let fruit of filteredTag | async" [value]="fruit">
+                {{fruit}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </form>
+<div class="flex justify-end">
+  <button (click)="addpost()"  class="pl-3  p-2 hover:bg-sky-200 text-gray-900 rounded-lg dark:text-black bg-sky-100 px-4 font-medium mt-3">Add post</button>
+</div >
+    <div>
+      <p class="text-2xl font-medium">Preview here</p>
+      <div class="flex justify-center">
+        <img *ngIf="encodedString" [src]='encodedString' alt="Encoded Image" style="width: max-content; max-height: 60vh;">  
+       
+      </div>
+      <div id="view" [innerHTML]="editorContent">
+   
+      </div>
+ </div>
+
+
+ 
+

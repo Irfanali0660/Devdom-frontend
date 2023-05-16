@@ -1,0 +1,18 @@
+<article  *ngFor="let read of readlist" class="flex p-6  cursor-pointer  border border-black rounded-lg m-4 justify-between" >    
+    <div class="flex items-center" routerLink="/singlepost/{{read.post[0]._id}}">
+        <div class="flex items-center" >
+            <a class="crayons-avatar crayons-avatar--l border border-gray-200" 
+            datatestid="item-user"><img
+                [src]="'http://localhost:4000/images/'+read.post[0].image" style="width: 200px; height: 150px;"
+                alt="" class="crayons-avatar__image"></a>
+        </div>
+        <div class="flex-1 pl-2 m:pl-4 items-center"><a  class="flex crayons-link ">
+                <p class="content fs-base lh-tight m:fs-l  break-word" [innerHTML]="read.post[0].post"></p>
+            </a>
+            <p class="fs-s"><span class="color-base-60">{{read.post[0].date}}</span><span datatestid="item-tags"><span class="color-base-30"> • </span>
+                    </span>
+                </p>
+        </div>
+    </div>
+    <div class="m:self-center flex items-center justify-center"><button type="button" class="c-btn spec__archive-button" (click)="remove(read._id)"><svg width="40px" height="40px" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000" stroke="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M905.92 237.76a32 32 0 0 0-52.48 36.48A416 416 0 1 1 96 512a418.56 418.56 0 0 1 297.28-398.72 32 32 0 1 0-18.24-61.44A480 480 0 1 0 992 512a477.12 477.12 0 0 0-86.08-274.24z" fill="#a80000"></path><path d="M630.72 113.28A413.76 413.76 0 0 1 768 185.28a32 32 0 0 0 39.68-50.24 476.8 476.8 0 0 0-160-83.2 32 32 0 0 0-18.24 61.44zM489.28 86.72a36.8 36.8 0 0 0 10.56 6.72 30.08 30.08 0 0 0 24.32 0 37.12 37.12 0 0 0 10.56-6.72A32 32 0 0 0 544 64a33.6 33.6 0 0 0-9.28-22.72A32 32 0 0 0 505.6 32a20.8 20.8 0 0 0-5.76 1.92 23.68 23.68 0 0 0-5.76 2.88l-4.8 3.84a32 32 0 0 0-6.72 10.56A32 32 0 0 0 480 64a32 32 0 0 0 2.56 12.16 37.12 37.12 0 0 0 6.72 10.56zM726.72 297.28a32 32 0 0 0-45.12 0l-169.6 169.6-169.28-169.6A32 32 0 0 0 297.6 342.4l169.28 169.6-169.6 169.28a32 32 0 1 0 45.12 45.12l169.6-169.28 169.28 169.28a32 32 0 0 0 45.12-45.12L557.12 512l169.28-169.28a32 32 0 0 0 0.32-45.44z" fill="#a80000"></path></g></svg>Remove</button></div>
+</article>

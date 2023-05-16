@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import 'smart-webcomponents-angular/source/styles/smart.default.css';
+.DevDome{
+    font-family: 'Rancho', cursive;
+    font-size: xx-large !important;
+}
+.icons{
+    width: 30px;
+    height: 30px;
+}
+
+.dropdown {
+    position: relative;
+    /* margin-right: 100px; */
+    display: inline-block;
+  }
+  
+  .dropbtn {
+    color: white;
+    padding-right: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  

@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.DevDome{
+    font-family: 'Rancho', cursive;
+    font-size: xx-large !important;
+}
+.icons{
+    width: 30px;
+    height: 30px;
+}
+.listbox{
+    display: flex;
+    flex-wrap: wrap;
+}
+.list{
+    width: 24rem;
+    margin-bottom: 10px;
+    margin-left: 3%;
+    min-height: auto !important;
+}
+

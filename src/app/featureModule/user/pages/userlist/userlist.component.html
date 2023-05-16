@@ -1,0 +1,42 @@
+<div class="">
+
+    <div class="rounded-md dark:border-gray-700 mt-14 min-h-screen">
+ 
+ 
+       <div class="flex justify-between">
+          <h1 class="text-2xl font-bold text-gray-600">Listing</h1>
+          
+       </div>
+ 
+       <div class="container">
+        <div class="listbox mt-6">
+            <div *ngFor="let li of list" class="list lg:max-w-full lg:flex">
+               <div
+                  class="list w-full rounded m-2 border border-gray-600 lg:border-l-0 lg:border-t lg:border-gray-600 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+                  <div class="mb-6">
+                     <div class="text-gray-900 font-bold text-xl mb-2">{{li.title}}</div>
+                     <p class="text-gray-700 text-base text-justify">{{li.details}}</p>
+                  </div>
+                  <p class="font-semibold">Location : {{li.location}}</p>
+                  <p class="font-semibold mb-2">Expiry date: {{getexpdate(li.expdate)}}</p>
+                  <div class=" pt-2 pb-4">
+                     <span *ngFor="let tag of li.tag" class="bg-gray-100 text-gray-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded  ">#{{tag}}</span>                  
+                  </div>
+                  <div class="flex items-center">
+                     <img class="w-10 h-10 rounded-full mr-4"
+                        [src]="li.userId?.image">
+                     <div class="text-sm">
+                        <p class="text-gray-900 leading-none">{{li.userId?.userName}}</p>
+                        <p class="text-gray-600">{{getexpdate(li.date)}}</p>
+                     </div>
+                  </div>
+                  <div class="flex justify-end">
+                     <button routerLink="/editlist/{{li._id}}" class="p-2 mx-2 rounded hover:bg-green-200 text-center font-medium"><svg width="25px" height="25px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title></title> <g id="Complete"> <g id="edit"> <g> <path d="M20,16v4a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V6A2,2,0,0,1,4,4H8" fill="none" stroke="#00a841" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path> <polygon fill="none" points="12.5 15.8 22 6.2 17.8 2 8.3 11.5 8 16 12.5 15.8" stroke="#00a841" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></polygon> </g> </g> </g> </g></svg></button>
+                     <button (click)="deletelist(li._id)"  class="rounded hover:bg-red-200 text-center font-medium"><svg width="35px" height="35px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M10 11V17" stroke="#a80000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M14 11V17" stroke="#a80000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M4 7H20" stroke="#a80000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M6 7H12H18V18C18 19.6569 16.6569 21 15 21H9C7.34315 21 6 19.6569 6 18V7Z" stroke="#a80000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z" stroke="#a80000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></button>
+                  </div>
+               </div>
+            </div>
+         </div>
+       </div>
+    </div>
+ </div>

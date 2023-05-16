@@ -1,0 +1,17 @@
+<div class="flex justify-end">
+    <button routerLink="/admin/tags/addtag" class="flex justify-center items-center pl-5 p-2 text-gray-900 rounded-lg dark:text-black hover:bg-sky-100 text-center font-medium" style="background-color: rgb(164, 255, 255);">Add tags</button>
+</div>
+<div class="tagbox flex-container ">
+    <div *ngFor="let details of tagdetailsData" class="tag shadow-md m-2 p-3 rounded-md">
+        <p class="text-xl text-center mb-2 font-medium">{{details.title | uppercase}}</p>
+        <div class="flex  items-center justify-evenly" >
+            <img [src]="'http://localhost:4000/images/'+details.image" alt="Tag images" style="width: 10vh ; height: fit-content;">
+            <p class="text-justify" style="width: 70%;">
+                {{details.description}}</p>
+    </div>
+    <div class=" flex justify-evenly ">
+        <button (click)="gettagdetails(details._id)" class=" px-4 p-2 text-gray-900 rounded-lg bg-green-300 dark:text-black hover:bg-green-400 text-center font-medium">Edit</button>
+        <button (click)="deletetag(details._id)" class=" px-3 text-gray-900 rounded-lg bg-red-300 dark:text-black hover:bg-red-400 text-center font-medium">Delete</button>
+     </div>
+    </div>
+</div>

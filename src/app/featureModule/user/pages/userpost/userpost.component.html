@@ -1,0 +1,43 @@
+<main class=" lg:pb-24 bg-white dark:bg-gray-900">
+    <div *ngFor="let post of postdetails" class=" flex justify-start flex-row px-4 mx-auto max-w-screen-xl mt-3" >  
+        <article  class="shadow-md p-4 mx-auto w-full cursor-pointer format format-sm sm:format-base lg:format-lg format-blue dark:format-invert text-justify border border-gray-400" style="width: 60% !important;">
+            <div class="flex justify-between">
+                <div>
+                    <header class="mb-2 lg:mb-4 not-format ">
+                        <address class="flex items-center mb-6 not-italic ">
+                            <div class="inline-flex items-center mr-3 text-sm text-gray-900  ">
+                                <img *ngIf="post.userId.image else image"  class="mr-4 w-12 h-12 rounded-full" [src]="post.userId.image" alt="image">
+                                <ng-template #image>
+                                    <img  class="mr-4 w-12 h-12 rounded-full" src="https://www.pngmart.com/files/22/User-Avatar-Profile-Background-Isolated-PNG.png" alt="">
+                                </ng-template>
+                                <div>
+                                    <a href="#" rel="author" class="text-xl font-bold text-gray-900 ">{{post.userId.userName}}</a>
+                                    <!-- <p class="text-base font-light text-gray-500 dark:text-gray-400">Graphic Designer, educator & CEO Flowbite</p> -->
+                                    <p class="text-base font-light text-gray-500 dark:text-gray-400"><time pubdate >{{post.date}}</time></p>
+                                </div>
+                            </div>
+                        </address>
+                    </header>
+                </div>
+                <div class="flex justify-end">
+                    <button (click)="deletepost(post._id)"  class="rounded  text-center font-medium"><svg width="25px" height="25px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M10 11V17" stroke="#a80000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M14 11V17" stroke="#a80000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M4 7H20" stroke="#a80000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M6 7H12H18V18C18 19.6569 16.6569 21 15 21H9C7.34315 21 6 19.6569 6 18V7Z" stroke="#a80000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z" stroke="#a80000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></button>
+                 </div>
+            </div>
+           
+            <div routerLink="/singlepost/{{post._id}}">
+              
+                <div  class="flex justify-center mb-6" > 
+                    <img  [src]="'http://localhost:4000/images/'+post.image" alt="">
+                </div>
+                   
+                <p>
+                    <span class="text-gray-400" *ngFor="let tag of post.tag">#{{tag.title}}&nbsp;</span>
+                </p>
+                <p class="content" [innerHTML]="post.post"></p>
+                <!-- <p class="mt-2 font-medium">{{post.tag}}</p> -->
+            </div> 
+        </article>
+        <div style="width: 30% !important;"> 
+        </div>
+    </div>
+</main>

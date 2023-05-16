@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import 'smart-webcomponents-angular/source/styles/smart.default.css';
+
+.DevDome{
+    font-family: 'Rancho', cursive;
+    font-size: xx-large !important;
+}
+.newlist{
+    margin-top: 80px !important;
+    padding-left: 10%;
+    padding-right: 6%;
+}
+.mat-mdc-form-field-subscript-wrapper{
+    display: none !important;
+}
+
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: white !important;
+}

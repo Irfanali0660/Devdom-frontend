@@ -1,0 +1,42 @@
+<h1>Reported post</h1>
+<main class=" lg:pb-24 bg-white dark:bg-gray-900">
+    <div *ngFor="let reportData of reportpostData" class=" flex justify-start flex-row px-4 mx-auto max-w-screen-xl mt-3" >
+        <article  class=" shadow-md p-4 mx-auto w-full cursor-pointer format format-sm sm:format-base lg:format-lg format-blue dark:format-invert text-justify border border-gray-400" style="width: 70% !important;">
+            <div class="flex justify-between">
+                <div>
+                    <header class="mb-4 lg:mb-6 not-format ">
+                        <address class="flex items-center mb-6 not-italic ">
+                            <div class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white ">
+                                <img *ngIf="reportData.reporterId.image else image" class="mr-4 w-12 h-12 rounded-full" [src]="reportData.reporterId.image" alt="image">
+                                <ng-template #image>
+                                    <img class="mr-4 w-12 h-12 rounded-full" src="https://www.pngmart.com/files/22/User-Avatar-Profile-Background-Isolated-PNG.png" alt="">
+                                </ng-template>
+                                <div>
+                                    
+                                    <a href="#" rel="author" class="text-xl font-bold text-gray-900 ">{{reportData.reporterId.userName}}</a>
+                                </div>
+                            </div>
+                        </address>
+                    </header>
+                </div>
+                <div>
+                    <svg (click)="deletepost(reportData._id)" width="35px" height="35px" viewBox="0 0 1024.00 1024.00" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#ff0000" stroke="#ff0000" transform="rotate(0)matrix(-1, 0, 0, 1, 0, 0)" stroke-width="0.01024"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="16.384"></g><g id="SVGRepo_iconCarrier"><path d="M667.8 362.1H304V830c0 28.2 23 51 51.3 51h312.4c28.4 0 51.4-22.8 51.4-51V362.2h-51.3z" fill="#ffffff"></path><path d="M750.3 295.2c0-8.9-7.6-16.1-17-16.1H289.9c-9.4 0-17 7.2-17 16.1v50.9c0 8.9 7.6 16.1 17 16.1h443.4c9.4 0 17-7.2 17-16.1v-50.9z" fill="#ffffff"></path><path d="M733.3 258.3H626.6V196c0-11.5-9.3-20.8-20.8-20.8H419.1c-11.5 0-20.8 9.3-20.8 20.8v62.3H289.9c-20.8 0-37.7 16.5-37.7 36.8V346c0 18.1 13.5 33.1 31.1 36.2V830c0 39.6 32.3 71.8 72.1 71.8h312.4c39.8 0 72.1-32.2 72.1-71.8V382.2c17.7-3.1 31.1-18.1 31.1-36.2v-50.9c0.1-20.2-16.9-36.8-37.7-36.8z m-293.5-41.5h145.3v41.5H439.8v-41.5z m-146.2 83.1H729.5v41.5H293.6v-41.5z m404.8 530.2c0 16.7-13.7 30.3-30.6 30.3H355.4c-16.9 0-30.6-13.6-30.6-30.3V382.9h373.6v447.2z" fill="#af0404"></path><path d="M511.6 798.9c11.5 0 20.8-9.3 20.8-20.8V466.8c0-11.5-9.3-20.8-20.8-20.8s-20.8 9.3-20.8 20.8v311.4c0 11.4 9.3 20.7 20.8 20.7zM407.8 798.9c11.5 0 20.8-9.3 20.8-20.8V466.8c0-11.5-9.3-20.8-20.8-20.8s-20.8 9.3-20.8 20.8v311.4c0.1 11.4 9.4 20.7 20.8 20.7zM615.4 799.6c11.5 0 20.8-9.3 20.8-20.8V467.4c0-11.5-9.3-20.8-20.8-20.8s-20.8 9.3-20.8 20.8v311.4c0 11.5 9.3 20.8 20.8 20.8z" fill="#af0404"></path></g></svg>
+                </div>
+            </div>
+            <div >
+                <div  class="flexr mb-6" > 
+                    <!-- <img   [src]="'http://localhost:4000/images/'+reportData.postId.image" alt="" style="width:30rem;"> -->
+                    <h1 class="text-red-600">{{reportData.issue}}</h1>
+                </div>
+                   
+                <p>
+                    <!-- <span class="text-gray-400" *ngFor="let tag of reportData.postId.tag">#{{tag.title}}&nbsp;</span> -->
+                </p>
+                <p class="content" [innerHTML]="reportData.postId.post"></p>
+                <!-- <p class="mt-2 font-medium">{{post.tag}}</p> -->
+            </div> 
+        </article>
+        
+        
+    </div>
+</main> 

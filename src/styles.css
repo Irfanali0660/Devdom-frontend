@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+/* body{
+    margin: 0;
+} */
+html, body { height: 100%; }
+body { 
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif; 
+   
+}
+
+@import '~@ctrl/ngx-emoji-mart/picker';
+
+/* You can add global styles to this file, and also import other style files */
+@import '~maplibre-gl/dist/maplibre-gl.css';
+

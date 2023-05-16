@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import 'smart-webcomponents-angular/source/styles/smart.default.css';
+
+#watermark{
+  visibility: hidden;
+}
+.DevDome{
+    font-family: 'Rancho', cursive;
+    font-size: xx-large !important;
+}
+.icons{
+    width: 30px;
+    height: 30px;
+}
+
+  .html-header {
+    margin: 15px 0 5px;
+  }
+  
+  .html {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 0.5rem;
+    background-color: #f1f1f1;
+    
+    max-height: 8rem;
+    overflow: auto;
+  }
+  #editor{
+    height: 50vh !important;
+    border-top: 1px solid rgb(95, 95, 95) !important;
+    border-left: 1px solid rgb(95, 95, 95) !important;
+    border-right: 1px solid rgb(95, 95, 95) !important;
+    border-bottom: 1px solid rgb(255, 254, 254) !important;
+    border-radius: 0% !important;
+  }
+  #view{
+    min-height: 50vh !important;
+    border: 1px solid;
+    border-color: rgb(95, 95, 95) !important;
+    /* margin-top: 3rem ; */
+    padding: 2%;
+  }
+  .heading{
+    border-color: aliceblue !important;
+    width: 100%;
+    text-align: center;
+  }
+
+
+.example-chip-list {
+  width: 100%;
+}
+.mat-mdc-text-field-wrapper{
+  border-bottom: .5px solid rgb(95, 95, 95) !important;
+  border-left: 1px solid rgb(95, 95, 95) !important;
+  border-right: 1px solid rgb(95, 95, 95) !important;
+  /* border-top: 2px solid rgb(255, 254, 254) !important; */
+  border-radius: 0% !important;
+}
