@@ -25,7 +25,7 @@ export class UsersService {
 
   constructor(private http:HttpClient) {  }
 
-  localhost='http://localhost:4000'
+  localhost='https://devbackend.irfanali.club'
 
   SignupData(data:signupinterface) :Observable<any>{
     return this.http.post(`${this.localhost}/users/signup`,data,this.httpOptions)

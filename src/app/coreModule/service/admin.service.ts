@@ -18,7 +18,7 @@ export class AdminService {
 
   constructor(private http:HttpClient) {  }
 
-  localhost='http://localhost:4000'
+  localhost='https://devbackend.irfanali.club'
 
   adminlogin(data:any) :Observable<any>{
     return this.http.post(`${this.localhost}/admin/adminlogin`,data,this.httpOptions)
