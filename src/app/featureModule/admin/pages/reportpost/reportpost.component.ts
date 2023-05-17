@@ -15,6 +15,7 @@ export class ReportpostComponent implements OnInit{
     this.reportpost()
     this.store.pipe(select(reportData)).subscribe((data)=>{
       this.reportpostData=data
+      console.log(this.reportpostData);
       console.log(this.reportpostData.length);
      })
   }
