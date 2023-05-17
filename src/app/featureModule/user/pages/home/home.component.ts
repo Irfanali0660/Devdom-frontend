@@ -56,6 +56,8 @@ export class HomeComponent implements OnInit{
   modelclick(){
     this.model=!this.model
     this.menutoggle=!this.menutoggle
+    console.log("COMPLETED");
+    
   }
   Report(){
     console.log(this.id);

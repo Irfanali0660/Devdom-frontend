@@ -112,7 +112,7 @@
               <div class="p-3" >
                   <div class="flex items-center justify-between mb-2">
                       <a href="#">
-                          <img class="w-10 h-10 rounded-full" [src]="post.userId.image">
+                          <img class="w-10 h-10 rounded-full" [src]="post.userId.googleimage ? post.userId.googleimage : 'https://devbackend.irfanali.club/images/'+post.userId?.image">
                       </a>
                       <div>
                           <button  type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-xs px-3 py-1.5 focus:outline-none ">Connect</button>
@@ -178,26 +178,27 @@
               </div>
             </div>
           </div>
-          <div class="flex flex-col mx-10">
-           
-            <div class="flex items-center mr-4">
-                <input formControlName="reportissue" id="red-radio" type="radio" value="It's spam"  class=" border border-red-700 ">
-                <label for="red-radio" class="ml-2 text-sm font-medium text-gray-900 ">It's spam</label>
-            </div><div class="flex items-center mr-4">
-                <input formControlName="reportissue" id="red-radio1" type="radio" value="False information"  class="border border-red-700">
-                <label for="red-radio1" class="ml-2 text-sm font-medium text-gray-900 ">False information</label>
-            </div><div  class="flex items-center mr-4">
-                <input formControlName="reportissue" id="red-radio2" type="radio" value="violence or dabgerous organisations"  class="border border-red-700">
-                <label for="red-radio2" class="ml-2 text-sm font-medium text-gray-900 ">violence or dabgerous organisations</label>
-            </div><div class="flex items-center mr-4">
-                <input formControlName="reportissue" id="red-radio3" type="radio" value="Hate speech or symbols"  class="border border-red-700 select:bg-red-600"> 
-                <label for="red-radio3" class="ml-2 text-sm font-medium text-gray-900 ">Hate speech or symbols</label>
-            </div>
-          </div>
-          <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-            <button type="submit" class="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto">Report</button>
-            <button type="button" class=" inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto" (click)="model=!model">Cancel</button>
-          </div>
+          <form (submit)="reportsubmit()">
+              <div class="flex flex-col mx-10">
+                  <div class="flex items-center mr-4">
+                      <input formControlName="reportissue" id="red-radio" type="radio" value="It's spam"  class=" border border-red-700 ">
+                      <label for="red-radio" class="ml-2 text-sm font-medium text-gray-900 ">It's spam</label>
+                    </div><div class="flex items-center mr-4">
+                        <input formControlName="reportissue" id="red-radio1" type="radio" value="False information"  class="border border-red-700">
+                        <label for="red-radio1" class="ml-2 text-sm font-medium text-gray-900 ">False information</label>
+                    </div><div  class="flex items-center mr-4">
+                        <input formControlName="reportissue" id="red-radio2" type="radio" value="violence or dabgerous organisations"  class="border border-red-700">
+                        <label for="red-radio2" class="ml-2 text-sm font-medium text-gray-900 ">violence or dabgerous organisations</label>
+                    </div><div class="flex items-center mr-4">
+                        <input formControlName="reportissue" id="red-radio3" type="radio" value="Hate speech or symbols"  class="border border-red-700 select:bg-red-600"> 
+                        <label for="red-radio3" class="ml-2 text-sm font-medium text-gray-900 ">Hate speech or symbols</label>
+                    </div>
+                </div>
+                <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                    <button type="submit" class="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto">Report</button>
+                    <button type="button" class=" inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto" (click)="model=!model">Cancel</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
