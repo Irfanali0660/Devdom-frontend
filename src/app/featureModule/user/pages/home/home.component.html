@@ -2,7 +2,7 @@
     <div  *ngFor="let details of tagdetailsData" class="tag shadow-md m-2 p-2 rounded-md">
         <p class="text-xl text-center  font-medium">{{details.title | uppercase}}</p>
         <div (click)="getsingletag(details._id)" class="flex  items-center justify-evenly   cursor-pointer" >
-            <img [src]="'http://localhost:4000/images/'+details.image" alt="Tag images" style="width: 10vh ; height: fit-content;">
+            <img [src]="'https://devbackend.irfanali.club/images/'+details.image" alt="Tag images" style="width: 10vh ; height: fit-content;">
             <p class="text-justify px-2">
                 {{details.description}}</p>
         </div>
@@ -71,7 +71,7 @@
                     <header class="mb-2 lg:mb-4 not-format ">
                         <address class="flex items-center mb-6 not-italic ">
                             <div class="inline-flex items-center mr-3 text-sm text-gray-900  ">
-                                <img *ngIf="post.userId.image || post.userId.googleimage image" (click)="popover(post._id)" class="mr-4 w-12 h-12 rounded-full" [src]="post.userId.googleimage ? post.userId.googleimage : 'http://localhost:4000/images/'+post.userId?.image" alt="image"> 
+                                <img *ngIf="post.userId.image || post.userId.googleimage image" (click)="popover(post._id)" class="mr-4 w-12 h-12 rounded-full" [src]="post.userId.googleimage ? post.userId.googleimage : 'https://devbackend.irfanali.club/images/'+post.userId?.image" alt="image"> 
                                 <ng-template #image>
                                     <img (click)="popover(post._id)" class="mr-4 w-12 h-12 rounded-full" src="https://www.pngmart.com/files/22/User-Avatar-Profile-Background-Isolated-PNG.png" alt="">
                                 </ng-template>
@@ -144,7 +144,7 @@
             <div routerLink="/singlepost/{{post._id}}">
               
                 <div  class="flex justify-center mb-6" > 
-                    <img  [src]="'http://localhost:4000/images/'+post.image" alt="">
+                    <img  [src]="'https://devbackend.irfanali.club/images/'+post.image" alt="">
                 </div>
                    
                 <p>
