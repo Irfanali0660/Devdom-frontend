@@ -90,7 +90,7 @@
                         <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"></path></svg>
                       </button>
                       <!-- Dropdown menu -->
-                      <div  class="absolute bg-white border border-gray-200" *ngIf="menutoggle && post._id==id" >
+                      <div  class="absolute bg-white border border-gray-200" *ngIf="menutoggle && post?._id==id" >
                           <ul class="py-2 text-sm text-gray-700 " >
                             <li>
                               <a (click)="modelclick()" class="block px-4 py-2 hover:bg-gray-100 text-red-600 font-medium flex flex-row"><svg width="20px" height="20px" viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#adadad"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.048"></g><g id="SVGRepo_iconCarrier"> <g id="Navigation / Flag"> <path id="Vector" d="M4 21V15.6871M4 15.6871C9.81818 11.1377 14.1818 20.2363 20 15.6869V4.31347C14.1818 8.86284 9.81818 -0.236103 4 4.31327V15.6871Z" stroke="#545454" stroke-width="1.392" stroke-linecap="round" stroke-linejoin="round"></path> </g> </g></svg> Report</a>
@@ -108,11 +108,11 @@
                       </div>
                 </div>
             </div>
-            <div *ngIf="popoveruser && post._id==id" class="absolute z-10 bg-white rounded border border-gray-200 w-64 text-sm text-gray-500 transition-opacity duration-300 ">
+            <div *ngIf="popoveruser && post?._id==id" class="absolute z-10 bg-white rounded border border-gray-200 w-64 text-sm text-gray-500 transition-opacity duration-300 ">
               <div class="p-3" >
                   <div class="flex items-center justify-between mb-2">
                       <a href="#">
-                          <img class="w-10 h-10 rounded-full" [src]="post.userId.googleimage ? post.userId.googleimage : 'https://devbackend.irfanali.club/images/'+post.userId?.image">
+                          <img class="w-10 h-10 rounded-full" [src]="post.userId.googleimage ? post.userId?.googleimage : 'https://devbackend.irfanali.club/images/'+post.userId?.image">
                       </a>
                       <div>
                           <button  type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-xs px-3 py-1.5 focus:outline-none ">Connect</button>

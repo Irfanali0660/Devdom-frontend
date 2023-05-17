@@ -59,14 +59,11 @@ export class HomeComponent implements OnInit{
     console.log("COMPLETED");
     
   }
-  Report(){
-    console.log(this.id);
-  }
-
   report = new FormGroup({
     'reportissue': new FormControl('',Validators.required),
     })
   reportsubmit(){
+    console.log(this.report.value,"report");
    if(this.report.valid){
     this.store.dispatch(action.report({id:this.id,formData:this.report.value}))
     this.model=!this.model
