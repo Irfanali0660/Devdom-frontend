@@ -178,7 +178,7 @@
               </div>
             </div>
           </div>
-          <form (submit)="reportsubmit()">
+          <form (submit)="reportsubmit()" [formGroup]="report" method="post">
               <div class="flex flex-col mx-10">
                   <div class="flex items-center mr-4">
                       <input formControlName="reportissue" id="red-radio" type="radio" value="It's spam"  class=" border border-red-700 ">
