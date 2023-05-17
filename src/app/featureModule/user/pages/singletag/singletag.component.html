@@ -22,7 +22,7 @@
                     <header class="mb-4 lg:mb-6 not-format ">
                         <address class="flex items-center mb-6 not-italic ">
                             <div class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white ">
-                                <img *ngIf="post.userId?.image else image" class="mr-4 w-12 h-12 rounded-full" [src]="post.userId?.image" alt="image">
+                                <img *ngIf="post?.userId?.image || post?.userId?.googleimage else image" class="mr-4 w-12 h-12 rounded-full" [src]="post?.userId?.googleimage ?post?.userId?.googleimage : 'https://devbackend.irfanali.club/images/'+post?.userId?.image" alt="image">
                                 <ng-template #image>
                                     <img class="mr-4 w-12 h-12 rounded-full" src="https://www.pngmart.com/files/22/User-Avatar-Profile-Background-Isolated-PNG.png" alt="">
                                 </ng-template>

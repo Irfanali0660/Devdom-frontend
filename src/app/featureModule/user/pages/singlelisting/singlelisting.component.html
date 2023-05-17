@@ -44,8 +44,11 @@
                      <span *ngFor="let tag of list?.tag" class="bg-gray-100 text-gray-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded  ">#{{tag}}</span>                  
                   </div>
                   <div class="flex items-center">
-                     <img class="w-10 h-10 rounded-full mr-4"
-                        [src]="list?.userId?.image">
+                     <img class="w-10 h-10 rounded-full mr-4" *ngIf="list?.userId?.image ||list?.userId?.googleimage else image"
+                       [src]="list?.userId?.googleimage ?list?.userId?.googleimage : 'https://devbackend.irfanali.club/images/'+list?.userId?.image">
+                       <ng-template #image>
+                        <img class="mr-2 w-6 h-6 rounded-full" src="https://www.pngmart.com/files/22/User-Avatar-Profile-Background-Isolated-PNG.png" alt="">
+                       </ng-template>
                      <div class="text-sm">
                         <p class="text-gray-900 leading-none">{{list?.userId?.userName}}</p>
                         <p class="text-gray-600">{{getexpdate(list?.date)}}</p>

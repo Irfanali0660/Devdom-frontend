@@ -332,10 +332,14 @@
                   <article  class="p-6 mb-6 text-base bg-white rounded-lg dark:bg-gray-900 border border-gray-200 ">
                       <footer class="flex justify-between items-center mb-2">
                           <div class="flex items-center">
-                              <p class="inline-flex items-center mr-3 text-sm text-gray-900"><img
+                              <p class="inline-flex items-center mr-3 text-sm text-gray-900"><img *ngIf="comment?.userId?.image ||comment?.userId?.googleimage else image"
                                       class="mr-2 w-6 h-6 rounded-full"
-                                      [src]="comment?.userId?.image"
-                                      alt="Michael Gough">{{comment?.userId?.userName}}</p>
+                                        [src]="comment?.userId?.googleimage ?comment?.userId?.googleimage : 'https://devbackend.irfanali.club/images/'+comment?.userId?.image"
+                                      alt="Michael Gough">
+                                      <ng-template #image>
+                                        <img class="mr-2 w-6 h-6 rounded-full" src="https://www.pngmart.com/files/22/User-Avatar-Profile-Background-Isolated-PNG.png" alt="">
+                                       </ng-template>
+                                      {{comment?.userId?.userName}}</p>
                               <p class="text-sm text-gray-600 dark:text-gray-400">{{getDateRelative(comment?.date)}}</p>
                           </div>
                           <button (click)="deletecomment(comment._id)"  class="rounded hover:bg-red-200 text-center text-sm font-medium px-1 text-red-600 "><small>Delete</small></button>
