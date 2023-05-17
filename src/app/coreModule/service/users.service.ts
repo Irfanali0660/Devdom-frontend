@@ -110,6 +110,8 @@ export class UsersService {
     return this.http.get(`${this.localhost}/users/gettagpost?id=${id}`,this.httpOptions)
   }
   report(id:string,formData:reportinterface):Observable<any>{
+    console.log(id);
+    console.log(formData,"report form")
     return this.http.post(`${this.localhost}/users/report`,{id,formData},this.httpOptions)
   }
   gettags():Observable<any>{
