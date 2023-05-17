@@ -275,7 +275,7 @@
                 <header class="mb-4 lg:mb-6 not-format ">
                         <address class="flex items-center mb-6 not-italic ">
                             <div  class="inline-flex items-center mr-3 text-sm text-gray-900  ">
-                                <img *ngIf="postdetailsData?.userId?.image ||postdetailsData?.userId?.googleimage else image"  class="mr-4 w-12 h-12 rounded-full" [src]="postdetailsData?.userId?.googleimage ?postdetailsData?.userId?.googleimage : 'http://localhost:4000/images/'+postdetailsData?.userId?.image"
+                                <img *ngIf="postdetailsData?.userId?.image ||postdetailsData?.userId?.googleimage else image"  class="mr-4 w-12 h-12 rounded-full" [src]="postdetailsData?.userId?.googleimage ?postdetailsData?.userId?.googleimage : 'https://devbackend.irfanali.club/images/'+postdetailsData?.userId?.image"
                                     alt="Jese Leos">
                                         <ng-template #image>
                                         <img class="mr-4 w-12 h-12 rounded-full" src="https://www.pngmart.com/files/22/User-Avatar-Profile-Background-Isolated-PNG.png" alt="">
@@ -298,7 +298,7 @@
                             &nbsp;</span>
                     </p>
                     <div class="flex  mb-6">
-                        <img [src]="'http://localhost:4000/images/'+postdetailsData?.image" alt="">
+                        <img [src]="'https://devbackend.irfanali.club/images/'+postdetailsData?.image" alt="">
                     </div>
                     <p class="contentr" [innerHTML]="postdetailsData.post"></p>
                 </article>

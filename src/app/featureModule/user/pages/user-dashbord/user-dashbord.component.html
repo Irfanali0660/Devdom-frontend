@@ -33,10 +33,9 @@
                 <div class="bg-white p-3 border-t-4 border-green-400">
                     
                     <div class="flex items-center space-x-4 mb-3">
-                        <!-- <img class="w-13 h-13 rounded-lg" [src]="userData.image" alt="">'http://localhost:4000/images/'+postdetailsData?.image -->
-                        <!-- <img class="rounded-lg w-16 h-16" [src]="userData.googleimage ? userData.googleimage:'http://localhost:4000/images/'+userData?.image " alt="User profile image"> -->
+                        
 
-                        <img *ngIf="userData.googleimage || userData.image else image" class="rounded-lg" [src]="userData.googleimage ? userData.googleimage : 'http://localhost:4000/images/'+userData?.image" style="width: 6rem; height: 6rem;">
+                        <img *ngIf="userData.googleimage || userData.image else image" class="rounded-lg" [src]="userData.googleimage ? userData.googleimage : 'https://devbackend.irfanali.club/images/'+userData?.image" style="width: 6rem; height: 6rem;">
                         <ng-template #image>
                             <img class="rounded-lg" src="https://www.pngmart.com/files/22/User-Avatar-Profile-Background-Isolated-PNG.png" alt="" style="width: 6rem; height: 6rem;">
                         </ng-template>

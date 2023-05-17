@@ -35,7 +35,7 @@
                 </div>
             </form>
             <button (click)="chatroom(user._id)" *ngFor="let user of users|chatUser:'name':userName"  class="flex items-center w-full px-5 py-2 transition-colors duration-200  gap-x-2 hover:bg-gray-100 focus:outline-none border border-gray-600 ">
-                <img *ngIf="user.image||user.googleimage else image" class="object-cover w-8 h-8 rounded-full" [src]="user.googleimage ? user.googleimage : 'http://localhost:4000/images/'+user?.image" alt="">
+                <img *ngIf="user.image||user.googleimage else image" class="object-cover w-8 h-8 rounded-full" [src]="user.googleimage ? user.googleimage : 'https://devbackend.irfanali.club/images/'+user?.image" alt="">
                 <ng-template #image>
                     <img class="object-cover w-8 h-8 rounded-full" src="https://www.pngmart.com/files/22/User-Avatar-Profile-Background-Isolated-PNG.png" alt="">
                 </ng-template>

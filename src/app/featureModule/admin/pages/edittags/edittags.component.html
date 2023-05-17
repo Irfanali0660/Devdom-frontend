@@ -23,7 +23,7 @@
         </ngx-dropzone>
      </div>
      <div class="flex justify-center" *ngIf="files.length==0 else image">
-        <img [src]="'http://localhost:4000/images/'+tag?.image" alt="" style="width: fit-content; margin-top: 2rem;">
+        <img [src]="'https://devbackend.irfanali.club/images/'+tag?.image" alt="" style="width: fit-content; margin-top: 2rem;">
      </div>
      <ng-template #image>
         <ngx-dropzone-image-preview  ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f">

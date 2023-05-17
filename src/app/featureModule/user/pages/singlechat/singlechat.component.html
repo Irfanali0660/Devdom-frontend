@@ -8,7 +8,7 @@
                   <circle cx="8" cy="8" r="8" fill="currentColor"></circle>
                </svg>
             </span>
-         <img *ngIf="userData[0].image || userData[0].googleimage else image" [src]="userData[0]?.image" [src]="userData[0]?.googleimage ? userData[0]?.googleimage : 'http://localhost:4000/images/'+userData[0]?.image" alt="" class="w-10 sm:w-16 h-10 sm:h-16 rounded-full">
+         <img *ngIf="userData[0].image || userData[0].googleimage else image" [src]="userData[0]?.image" [src]="userData[0]?.googleimage ? userData[0]?.googleimage : 'https://devbackend.irfanali.club/images/'+userData[0]?.image" alt="" class="w-10 sm:w-16 h-10 sm:h-16 rounded-full">
          <ng-template #image>
             <img class="w-10 sm:w-16 h-10 sm:h-16 rounded-full" src="https://www.pngmart.com/files/22/User-Avatar-Profile-Background-Isolated-PNG.png" alt="">
         </ng-template>
@@ -33,7 +33,7 @@
                   <div><span class="px-4 py-2 rounded-lg inline-block rounded-br-none bg-green-400 text-white ">{{message?.text}}</span><p class="flex justify-end"><small>{{gettime(message.time)}}</small></p>
                   </div>
                  </div>
-                 <img *ngIf="message.sender?.image || message.sender?.googleimage else image" [src]="message.sender.googleimage ? message.sender.googleimage : 'http://localhost:4000/images/'+message.sender?.image" alt="My profile" class="w-6 h-6 rounded-full order-2">
+                 <img *ngIf="message.sender?.image || message.sender?.googleimage else image" [src]="message.sender.googleimage ? message.sender.googleimage : 'https://devbackend.irfanali.club/images/'+message.sender?.image" alt="My profile" class="w-6 h-6 rounded-full order-2">
                  <ng-template #image>
                   <img class="w-6 h-6 rounded-full order-2" src="https://www.pngmart.com/files/22/User-Avatar-Profile-Background-Isolated-PNG.png" alt="">
               </ng-template>
@@ -46,7 +46,7 @@
                      
                        <div><span class="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 text-gray-600">{{message?.text}}</span><p class="flex justify-start"><small>{{gettime(message?.time)}}</small></p></div>
                     </div>
-                    <img *ngIf="message.sender?.image || message.sender?.googleimage else image"  [src]="message.sender.googleimage ? message.sender.googleimage : 'http://localhost:4000/images/'+message.sender?.image" alt="My profile" class="w-6 h-6 rounded-full order-1">
+                    <img *ngIf="message.sender?.image || message.sender?.googleimage else image"  [src]="message.sender.googleimage ? message.sender.googleimage : 'https://devbackend.irfanali.club/images/'+message.sender?.image" alt="My profile" class="w-6 h-6 rounded-full order-1">
                     <ng-template #image>
                      <img class="w-6 h-6 rounded-full order-1" src="https://www.pngmart.com/files/22/User-Avatar-Profile-Background-Isolated-PNG.png" alt="">
                  </ng-template>

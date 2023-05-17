@@ -16,7 +16,7 @@ import { SinglepostComponent } from './singlepost/singlepost.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { ResetpassComponent } from './resetpass/resetpass.component';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 import { ListingComponent } from './listing/listing.component';
 import { NewListComponent } from './new-list/new-list.component';
 import { TagInputModule } from 'ngx-chips';

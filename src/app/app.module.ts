@@ -30,7 +30,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { GoogleLoginProvider, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
 import { GoogleSigninButtonDirective } from './sharedModule/directives/google-signin-button.directive';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { UserPipe } from './featureModule/admin/pipes/user.pipe';
 import { ErrorComponent } from './featureModule/error/404/error/error.component';

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Socket, SocketIoConfig } from 'ngx-socket-io';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
