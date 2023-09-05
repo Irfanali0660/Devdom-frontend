@@ -1,9 +1,9 @@
-<article  *ngFor="let read of readlist" class="flex p-6  cursor-pointer  border border-black rounded-lg m-4 justify-between" >    
+<article  *ngFor="let read of readlist" class="flex p-6  cursor-pointer border border-black rounded-lg m-4 justify-between max-h-[12rem]" >    
     <div class="flex items-center" routerLink="/singlepost/{{read.post[0]._id}}">
         <div class="flex items-center" >
             <a class="crayons-avatar crayons-avatar--l border border-gray-200" 
             datatestid="item-user"><img
-                [src]="'https://devbackend.irfanali.club/images/'+read.post[0].image" style="width: 200px; height: 150px;"
+                [src]="apiurl+'/images/'+read.post[0].image" style="width: 200px; height: 150px;"
                 alt="" class="crayons-avatar__image"></a>
         </div>
         <div class="flex-1 pl-2 m:pl-4 items-center"><a  class="flex crayons-link ">

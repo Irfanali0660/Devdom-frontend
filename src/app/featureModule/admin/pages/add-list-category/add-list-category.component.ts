@@ -20,7 +20,6 @@ constructor(private store:Store<appstateinterface>){}
 
 
   addlist(){
-    console.log(this.listcategory.value);
     this.store.dispatch(action.addlist({listCategory:this.listcategory.value}))
   }
 }

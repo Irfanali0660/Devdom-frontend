@@ -9,7 +9,6 @@ export class ListPipe implements PipeTransform {
   transform(value: addlistinterface[],query:string): addlistinterface[] {
     const regEx = new RegExp(query, 'i');
     if(query==''){
-      console.log(value);
       return value
     }else{
       return value.filter((list)=>{

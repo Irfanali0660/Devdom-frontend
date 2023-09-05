@@ -1,24 +1,28 @@
+import { taginterface } from "../../admin/interfaces/taginterface";
 import { addlistinterface } from "./addlist";
 import { addpostinterface } from "./addpost";
+import { Chat } from "./chat";
+import { Comments } from "./comments";
 import { listinterface } from "./list";
+import { postinterface } from "./post";
 import { signupinterface } from "./signup";
 
 export interface authstate{
     isLogged:Boolean;
     isLoading:Boolean,
     error:String|null; 
-    tag:[] 
-    tagdetails:string[]
+    tag:[]
+    tagdetails:taginterface[]
     signup:signupinterface
     postdetails:any;
     singletag:{}
-    singlepostdetails:[]
-    comments:Array<string>
+    singlepostdetails:addpostinterface
+    comments:Array<Comments>
     listcategory:listinterface[]
     list:addlistinterface[]
-    readlist:any
+    readlist:[]
     editlist:any
     users:signupinterface[]
-    chat:any
+    chat:Chat[]
     postload:Boolean;
 }

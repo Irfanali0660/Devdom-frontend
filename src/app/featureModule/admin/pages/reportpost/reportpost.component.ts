@@ -3,6 +3,7 @@ import { Store, select } from '@ngrx/store';
 import { appstateinterface } from 'src/app/appSatate.interface';
 import * as action from '../../store/action'
 import { reportData } from '../../store/selector';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-reportpost',
@@ -15,13 +16,12 @@ export class ReportpostComponent implements OnInit{
     this.reportpost()
     this.store.pipe(select(reportData)).subscribe((data)=>{
       this.reportpostData=data
-      console.log(this.reportpostData);
-      console.log(this.reportpostData.length);
      })
   }
   ngOnInit(): void {
     
   }
+  apiurl=environment.hostName
 
 
 
@@ -30,7 +30,6 @@ export class ReportpostComponent implements OnInit{
   }
 
   deletepost(id:string){
-    console.log(id);
     this.store.dispatch(action.deletepost({id:id}))
     
   } 

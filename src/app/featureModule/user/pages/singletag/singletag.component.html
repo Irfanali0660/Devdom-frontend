@@ -1,28 +1,24 @@
 
 <div class="tagbox flex-container items-between mx-10"> 
     <div  class="tag shadow-md m-2 p-2 rounded-md mx-10">
-        <p class="text-xl text-center  font-medium">{{tagdetailsData?.title | uppercase}}</p>
+        <p class="text-xl text-center  font-medium">{{tagdetailsData!.title | uppercase}}</p>
         <div class="flex  items-center justify-evenly" >
-            <img [src]="'https://devbackend.irfanali.club/images/'+tagdetailsData?.image" alt="Tag images" style="width: 10vh ; height: fit-content;">
+            <img [src]="apiurl+'/images/'+tagdetailsData!.image" alt="Tag images" style="width: 10vh ; height: fit-content;">
             <p class="text-justify px-2">
-                {{tagdetailsData?.description}}</p>
+                {{tagdetailsData!.description}}</p>
         </div>
     </div>
 </div>
-<!-- <div class="flex justify-end px-5 m-4">
-    <button  #login class="pl-3  text-gray-900  dark:text-black font-medium">Show more<i class="fa-solid fa-arrow-right"></i>
-    </button>
-</div> -->
 
 <main class=" lg:pb-24 bg-white dark:bg-gray-900">
     <div *ngFor="let post of tagpostData " class=" flex justify-start flex-row px-4 mx-auto max-w-screen-xl mt-3" >
-        <article  class=" shadow-md p-4 mx-auto w-full cursor-pointer format format-sm sm:format-base lg:format-lg format-blue dark:format-invert text-justify border border-gray-400" style="width: 70% !important;">
+        <article routerLink="/singlepost/{{post._id}}"  class=" shadow-md p-4 mx-auto w-full cursor-pointer format format-sm sm:format-base lg:format-lg format-blue dark:format-invert text-justify border border-gray-400" style="width: 70% !important;">
             <div class="flex justify-between">
                 <div>
                     <header class="mb-4 lg:mb-6 not-format ">
                         <address class="flex items-center mb-6 not-italic ">
                             <div class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white ">
-                                <img *ngIf="post?.userId?.image || post?.userId?.googleimage else image" class="mr-4 w-12 h-12 rounded-full" [src]="post?.userId?.googleimage ?post?.userId?.googleimage : 'https://devbackend.irfanali.club/images/'+post?.userId?.image" alt="image">
+                                <img *ngIf="post?.userId?.image || post?.userId?.googleimage else image" class="mr-4 w-12 h-12 rounded-full" [src]="post?.userId?.googleimage ?post?.userId?.googleimage : apiurl+'/images/'+post?.userId?.image" alt="image">
                                 <ng-template #image>
                                     <img class="mr-4 w-12 h-12 rounded-full" src="https://www.pngmart.com/files/22/User-Avatar-Profile-Background-Isolated-PNG.png" alt="">
                                 </ng-template>
@@ -35,6 +31,9 @@
                     </header>
                 </div>
              
+            </div>
+            <div  class="flex justify-center mb-6" > 
+                <img  [src]="apiurl+'/images/'+post.image" alt="">
             </div>
             <div >
                 <div  class="flexr mb-6" > 

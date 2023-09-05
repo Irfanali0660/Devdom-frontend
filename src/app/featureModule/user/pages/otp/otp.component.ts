@@ -31,15 +31,11 @@ export class OtpComponent implements OnInit{
   otp!:Number
   isDisabled=true
   verifyotp(){
-    console.log(this.otp);
     this.store.dispatch(auth.otp({value:this.otp}))
   }
 
-
-
-
   count = 60;
-  timer: any;
+  timer!: ReturnType<typeof setTimeout> | undefined;
 
 
   countDown(): void {
@@ -63,7 +59,6 @@ export class OtpComponent implements OnInit{
 
 
   Resend(){
-    console.log('resend');
     this.store.dispatch(auth.generateotp())
   }
 }

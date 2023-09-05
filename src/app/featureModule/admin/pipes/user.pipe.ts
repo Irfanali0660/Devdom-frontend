@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { userinterface } from '../../user/interface/user';
 
 @Pipe({
   name: 'user'
@@ -6,7 +7,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class UserPipe implements PipeTransform {
 
   transform(
-    value:any[], 
+    value:userinterface[], 
     arg:string,
     query: string): any[] {
     const regEx = new RegExp(query,'i');
@@ -14,7 +15,7 @@ export class UserPipe implements PipeTransform {
       return value
     }else if(arg=='name'){    
       return value.filter((user)=>{
-       return user.userName.match(regEx) || user.email.match(regEx)
+       return user.userName?.match(regEx) || user.email?.match(regEx)
       })
     }
     return [];

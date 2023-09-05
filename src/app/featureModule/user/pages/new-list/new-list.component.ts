@@ -8,6 +8,7 @@ import {MatChipEditedEvent, MatChipInputEvent} from '@angular/material/chips';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import * as action from '../../store/action' 
 import { LocationService } from '../../service/location.service';
+import { placeinterface } from '../../interface/placeinterface';
 
 @Component({
   selector: 'app-new-list',
@@ -16,27 +17,24 @@ import { LocationService } from '../../service/location.service';
 })
 export class NewListComponent {
   listcategory!: listinterface[];
-  locations: any=''
+  locations!: placeinterface[]
 
   constructor(private store:Store<appstateinterface>,private locationservice:LocationService){
     this.store.pipe(select(getlistcategory)).subscribe((listcategory)=>{
       this.listcategory=listcategory
-      console.log(this.listcategory);
   })
   }
  
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
-  tags: any[] = [];
+  tags: string[] = [];
   error!:string | boolean ;
   tagerror!:string | boolean ;
-  Location!:any
+  Location!:placeinterface
   LocationName!:string
   add(event: MatChipInputEvent): void {
-    console.log(event);
     
     let occurrences = this.tags.filter((el) => el === event.value).length;
-    console.log(occurrences);
    if(occurrences==0){
     if (this.tags.length < 5) {
     const value = (event.value || '').trim();
@@ -62,7 +60,7 @@ export class NewListComponent {
 }
   }
 
-  remove(tag: any): void {
+  remove(tag: string): void {
     const index = this.tags.indexOf(tag);
 
     if (index >= 0) {
@@ -70,7 +68,7 @@ export class NewListComponent {
     }
   }
 
-  edit(tag: any, event: MatChipEditedEvent) {
+  edit(tag: string, event: MatChipEditedEvent) {
     const value = event.value.trim();
 
     // Remove tag if it no longer has a name
@@ -97,8 +95,6 @@ export class NewListComponent {
     submitlist(){
      if(this.list.valid){
       if(this.Location){
-        console.log(this.list.value);
-        console.log(this.tags);
         this.store.dispatch(action.addnewlist({formdata:this.list.value,tag:this.tags,location:this.Location}))
       }else{
         this.error="Select the Location"
@@ -121,7 +117,6 @@ export class NewListComponent {
       const query = (event.target as HTMLInputElement).value.toLowerCase();
       if (query && query.length > 3) {
         this.locationservice.getLocations(query).subscribe((data: any) => {
-          console.log(data);
           this.locations = data;
         });
       } else if (query === '') {
@@ -129,12 +124,9 @@ export class NewListComponent {
       }
     }
 
-    onSelect(location:any) {
+    onSelect(location:placeinterface) {      
       this.Location=location
       this.LocationName=location.place_name
-      console.log(location);
-      console.log(this.LocationName);
-
       this.locations = []; 
     }
 }

@@ -102,8 +102,16 @@
 
 <div class="dropdown mx-3">
   <button   class="dropbtn text-black  text-sm text-center inline-flex items-center text-uppercase font-semibold" type="button">
-    <span class="crayons-avatar crayons-avatar--l "><img class="crayons-avatar__image rounded-full w-9 h-9 mx-2 ring-2 ring-gray-300 p-1" alt="" id="nav-profile-image" [src]="userData.googleimage ? userData.googleimage : 'https://devbackend.irfanali.club/images/'+userData?.image"></span>
-   <small>{{userData.userName  ? userData.userName : 'Guest User'}}</small>
+    <span class="crayons-avatar crayons-avatar--l">
+      <img *ngIf="userData.googleimage || userData.image else elseBlock" class="crayons-avatar__image rounded-full w-9 h-9 mx-2 ring-2 ring-gray-300 p-1"
+           alt=""
+           id="nav-profile-image"
+           [src]="userData.googleimage ? userData.googleimage : apiurl+'/images/'+userData.image">
+           <ng-template #elseBlock>
+            <img src="https://icons-for-free.com/iconfiles/png/512/business+costume+male+man+office+user+icon-1320196264882354682.png" alt="" class="crayons-avatar__image rounded-full w-9 h-9 mx-2 ring-2 ring-gray-300 p-1">
+           </ng-template>
+    </span>
+       <small>{{userData.userName  ? userData.userName : 'Guest User'}}</small>
   </button>  
  <div   class="dropdown-content z-10  bg-white divide-y divide-gray-100 rounded-lg shadow w-44 ">
     <div class="px-4 py-3 text-sm text-gray-900 ">

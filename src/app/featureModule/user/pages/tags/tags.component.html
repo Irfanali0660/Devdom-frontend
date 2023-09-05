@@ -1,8 +1,8 @@
 <div class="tagbox flex-container items-between"> 
     <div  *ngFor="let details of tags" class="tag shadow-md m-2 p-2 rounded-md">
         <p class="text-xl text-center  font-medium">{{details.title | uppercase}}</p>
-        <div (click)="getsingletag(details._id)" class="flex  items-center justify-evenly   cursor-pointer" >
-            <img [src]="'https://devbackend.irfanali.club/images/'+details.image" alt="Tag images" style="width: 10vh ; height: fit-content;">
+        <div (click)="details._id !== undefined ? getsingletag(details._id) : null" class="flex  items-center justify-evenly   cursor-pointer" >
+            <img [src]="apiurl+'/images/'+details.image" alt="Tag images" style="width: 10vh ; height: fit-content;">
             <p class="text-justify px-2">
                 {{details.description}}</p>
         </div>

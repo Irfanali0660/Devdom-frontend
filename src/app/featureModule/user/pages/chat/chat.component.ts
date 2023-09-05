@@ -7,6 +7,8 @@ import { userinterface } from '../../interface/user';
 import { UsersService } from 'src/app/coreModule/service/users.service';
 import { Router } from '@angular/router';
 import { NgxHttpLoaderService, NgxLoader }from 'ngx-http-loader';
+import { environment } from 'src/environments/environment';
+
 
 @Component({
   selector: 'app-chat',
@@ -19,11 +21,13 @@ export class ChatComponent {
   public loader = NgxLoader;
   constructor(private store:Store<appstateinterface>,private service:UsersService,private route:Router,private loaderservice: NgxHttpLoaderService){
 
-  this.userslist()
-  this.store.pipe(select(getuserlist)).subscribe((users)=>{
-    this.users=users
-})
+    this.userslist()
+    this.store.pipe(select(getuserlist)).subscribe((users)=>{
+      this.users=users
+    })
+    this.store.dispatch(action.getuser())
   }
+  apiurl=environment.hostName
 
   userslist(){
     this.store.dispatch(action.getusers())

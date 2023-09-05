@@ -13,11 +13,10 @@ import { listinterface } from 'src/app/featureModule/user/interface/list';
 })
 export class ListCategoryComponent implements OnInit {
   listcate!:listinterface[]
-index: any;
+index?: number;
   constructor(private store:Store<appstateinterface>){
     this.store.pipe(select(adlistselector)).subscribe((data)=>{
       this.listcate=data
-      console.log(this.listcate);
      })
      
   }

@@ -16,9 +16,9 @@ export const initialState:authstate={
     listcategory:[],
     list:[],
     readlist:[],
-    editlist:null,
+    editlist:[],
     users:[],
-    chat:null,
+    chat:[],
     postload:false
 }
 

@@ -5,6 +5,7 @@ export const environment = {
     socialAuth:{
         googleKey:'571741001580-hcgtdlfa9dsdeju02vm6cfudkqkmiv37.apps.googleusercontent.com'
     },
+    hostName:'https://devbackend.irfanali.club',
     socketUrl: 'https://devbackend.irfanali.club', 
      mapTiler: {
     apiKey: 'sOME4JpNlm1lG0rCxb0L',

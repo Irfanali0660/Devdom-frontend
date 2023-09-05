@@ -15,8 +15,7 @@ const httpOptions = {
 })
 export class LocationService {
   constructor(private http: HttpClient) {}
-  getLocations(query: string): Observable<MapLocationsInterface[]> {
-    console.log(query);
+  getLocations(query: string): Observable<MapLocationsInterface[]> {  
     return this.http
       .get<MapTilerResponseInterface>(
         `https://api.maptiler.com/geocoding/${query}.json?key=KPOlDn1YjHHmA6pUZnAQ`,

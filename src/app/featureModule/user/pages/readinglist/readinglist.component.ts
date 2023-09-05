@@ -6,6 +6,8 @@ import { getreadlist } from '../../store/selector';
 import moment from 'moment';
 import { UsersService } from "src/app/coreModule/service/users.service";
 import Swal from 'sweetalert2'
+import { environment } from 'src/environments/environment';
+import { Readinglist } from '../../interface/readinglist';
 
 @Component({
   selector: 'app-readinglist',
@@ -13,20 +15,18 @@ import Swal from 'sweetalert2'
   styleUrls: ['./readinglist.component.css']
 })
 export class ReadinglistComponent {
-  readlist: any;
+  readlist!: any[];
   constructor(private store:Store<appstateinterface>,private userservice:UsersService){
     this.getreadlist()
     this.store.pipe(select(getreadlist)).subscribe((readlist)=>{
       this.readlist=readlist
-      console.log(this.readlist);
   })
   }
-
+  apiurl=environment.hostName
   getreadlist(){
     this.store.dispatch(action.getreadlist())
   }
   getdate(date:string){
-    console.log(date);
     
     return moment(date).format('MMM DD YYYY');
   }

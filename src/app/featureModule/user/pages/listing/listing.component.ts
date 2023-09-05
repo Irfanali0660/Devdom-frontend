@@ -7,6 +7,7 @@ import { addlistinterface } from '../../interface/addlist';
 import moment from 'moment';
 import { listinterface } from '../../interface/list';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -20,16 +21,15 @@ export class ListingComponent{
   menutoggle=false
   listSearch:string=''
   model!: boolean;
+  apiurl=environment.hostName
   constructor(private store:Store<appstateinterface>,private route:Router){
     this.getlist()
     this.store.pipe(select(getlist)).subscribe((list)=>{
       this.list=list
-      console.log(this.list,'list');
     })
     this.listcate()
     this.store.pipe(select(getlistcategory)).subscribe((listcategory)=>{
       this.listcategory=listcategory
-      console.log(this.listcategory);
   })
   this.getuser()
   }
@@ -51,21 +51,18 @@ export class ListingComponent{
   }
   listsort(id:string | undefined){
     if(id=="alllist"){
-      console.log(id);
       this.store.pipe(select(getlist)).subscribe((list)=>{
         this.list=list
       })
     }else{
       this.store.pipe(select(getlist)).subscribe((list)=>{
         this.list=list?.filter((li)=>{return li.category==id})  
-        console.log(this.list);
        })
     }
   }
 
 
   location(li:addlistinterface){
-    console.log(li);
     this.route.navigate([`listing/${li._id}`])
   }
 }

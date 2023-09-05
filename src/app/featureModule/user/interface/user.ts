@@ -1,5 +1,5 @@
 export interface userinterface{
-    _id?:String
+    _id?:String | undefined
     userName?:String | null ,
     email?:String | null,
     image?:string|null,
@@ -14,4 +14,8 @@ export interface userinterface{
     birthday?:string | null
     work?:string | null
     googleimage?:string|null,
+    // status?: boolean;
 }
+
+
+  

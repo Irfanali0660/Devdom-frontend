@@ -22,12 +22,10 @@ export class ReplaysocketService {
     
   }
   
-  connect(q:any,auth?:{token:string}) {
+  connect(q:{id:string},auth?:{token:string}) {
     this.options.options = {...this.options.options, query : q,auth};
     
-    this.socket = new Socket(this.options);
-    console.log('replayconnect!!');
-   
+    this.socket = new Socket(this.options);   
     this.socket.connect();
   }
 
@@ -37,14 +35,9 @@ export class ReplaysocketService {
 
   on(eventName: string, callback: Function) {
     this.socket.on(eventName, callback);
-    // this.socket.fromEvent(eventName).subscribe((message: unknown) => {callback(message)})
   }
 
-  emit(eventName: string, data: any, callback?: Function) {
-    console.log(eventName,data);
-    
-    // this.socket.ioSocket.io.query = {channelId}
-    // this.socket.io('/my-namespace').query = { channelId };
+  emit(eventName: string, data: unknown, callback?: Function) {    
     this.socket.emit(eventName, data, callback);
   }
 

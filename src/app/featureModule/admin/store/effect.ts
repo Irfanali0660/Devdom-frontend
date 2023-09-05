@@ -9,6 +9,8 @@ import { Store } from '@ngrx/store';
 import { appstateinterface } from "src/app/appSatate.interface";
 import * as tag from '../store/action'
 import Swal from 'sweetalert2'
+import { Addtags } from "../interfaces/addtags";
+import { taginterface } from "../interfaces/taginterface";
 
 @Injectable()
 export class adminEffect{
@@ -17,10 +19,9 @@ export class adminEffect{
     verticalPosition: MatSnackBarVerticalPosition = 'top';
 
 Tag = createEffect(()=>
-this.action.pipe(ofType(adminAction.addtag),mergeMap((action:any)=>{
+this.action.pipe(ofType(adminAction.addtag),mergeMap((action:{TagData:taginterface,image: File[]})=>{
    
     return this.adminservice.addtag(action.TagData,action.image).pipe(map((data)=>{
-        console.log(data);
         if(data.success){
             this._snackbar.open('Tag added successfully', 'close', {
                 horizontalPosition: this.horizontalPosition,
@@ -53,7 +54,7 @@ this.action.pipe(ofType(adminAction.edittag),mergeMap((action)=>{
         this.route.navigate(['/admin/tags'])
         return adminAction.edittagsuccess()
     }else{
-        return adminAction.editfailure({error:data.falied})
+        return adminAction.editfailure({error:data.failed})
     }
    })) 
 }))
@@ -79,8 +80,6 @@ this.action.pipe(ofType(adminAction.deletetag),mergeMap((action)=>{
 gettagDetails=createEffect(()=>
 this.action.pipe(ofType(adminAction.gettagDetails),mergeMap((action)=>{
     return this.adminservice.gettagDetails(action.id).pipe(map((details)=>{
-        console.log( details.data);
-        console.log("gettagDetails");   
         this.route.navigate(['/admin/tags/edittag/'+details.data._id])
         return adminAction.gettagdetailssuccess({tagdetails:details.data})
        
@@ -119,8 +118,6 @@ this.action.pipe(ofType(adminAction.addlist),mergeMap((action)=>{
 adgetlist=createEffect(()=>
 this.action.pipe(ofType(adminAction.adgetlist),mergeMap(()=>{
     return this.adminservice.adgetlist().pipe(map((data)=>{
-        console.log(data,'admineffect');
-        
         return adminAction.adgetlistsuccess({adlist:data})
     }))
 }))
@@ -138,7 +135,6 @@ this.action.pipe(ofType(adminAction.liststatus),mergeMap((action)=>{
 adminreportpost=createEffect(()=>
 this.action.pipe(ofType(adminAction.getreportedpost),mergeMap(()=>{
     return this.adminservice.getreportpost().pipe(map((data)=>{
-        console.log("getreppoooo");
         return adminAction.getreportedpostsuccess({reportpost:data})
     }))
 }))

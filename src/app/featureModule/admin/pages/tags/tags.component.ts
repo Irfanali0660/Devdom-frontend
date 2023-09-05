@@ -3,6 +3,8 @@ import { Store, select } from '@ngrx/store';
 import * as tag from '../../store/action'
 import { tagdetails } from '../../store/selector';
 import {  appstateinterface } from 'src/app/appSatate.interface';
+import { environment } from 'src/environments/environment';
+import { taginterface } from '../../interfaces/taginterface';
 
 @Component({
   selector: 'app-tags',
@@ -13,7 +15,9 @@ export class TagsComponent implements OnInit{
   ngOnInit(): void { 
     
    }
-   tagdetailsData!:any[]
+   apiurl=environment.hostName
+   tagdetailsData!:taginterface[] | null
+  
   constructor(private store:Store<appstateinterface>){
     this.tags()
    this.store.pipe(select(tagdetails)).subscribe((data)=>{
@@ -23,11 +27,12 @@ export class TagsComponent implements OnInit{
   tags(){
     this.store.dispatch(tag.gettag())
   }
-  deletetag(tagid:string){
-    this.store.dispatch(tag.deletetag({id:tagid}))
+  deletetag(_id:string | number |undefined){    
+    this.store.dispatch(tag.deletetag({id:_id}))
     
   }
-  gettagdetails(tagid:string){
-    this.store.dispatch(tag.gettagDetails({id:tagid}))
+
+  gettagdetails(id:string| number |undefined){
+    this.store.dispatch(tag.gettagDetails({id:id}))
 }
 }

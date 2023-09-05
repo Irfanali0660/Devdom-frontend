@@ -35,7 +35,7 @@
                     <div class="flex items-center space-x-4 mb-3">
                         
 
-                        <img *ngIf="userData.googleimage || userData.image else image" class="rounded-lg" [src]="userData.googleimage ? userData.googleimage : 'https://devbackend.irfanali.club/images/'+userData?.image" style="width: 6rem; height: 6rem;">
+                        <img *ngIf="userData.googleimage || userData.image else image" class="rounded-lg" [src]="userData.googleimage ? userData.googleimage : apiurl+'/images/'+userData.image" style="width: 6rem; height: 6rem;">
                         <ng-template #image>
                             <img class="rounded-lg" src="https://www.pngmart.com/files/22/User-Avatar-Profile-Background-Isolated-PNG.png" alt="" style="width: 6rem; height: 6rem;">
                         </ng-template>
@@ -113,7 +113,7 @@
                             </div>
                             <div class="grid grid-cols-2 mb-2">
                                 <div class="px-4 py-2 font-semibold">Current Address</div>
-                                <div class="px-4 py-2">{{userData.address ? userData.address:"No address"}}</div>
+                                <div class="px-4 py-2">{{userData.address ?  userData.address:"No address"}}</div>
                             </div>
                       
                             <div class="grid grid-cols-2 mb-2">
@@ -222,7 +222,7 @@
                         <p *ngIf="updateBio.get('userName')?.hasError('pattern')">Mininum Length 4</p>
                       </div>
                     <div class="relative z-0  mb-6 group">
-                        <input type="number"formControlName="phone" id="floating_repeat_password" class="w-full block py-2.5 px-0  text-sm text-gray-900 bg-transparent border-t-0 border-l-0 border-r-0 border-b-2 border-cyan-200 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                        <input type="number" formControlName="phone" id="floating_repeat_password" class="w-full block py-2.5 px-0  text-sm text-gray-900 bg-transparent border-t-0 border-l-0 border-r-0 border-b-2 border-cyan-200 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder="" required  [value]="userData.phone"/>
                         <label for="floating_repeat_password" class="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Contact No</label>
                         <div *ngIf="updateBio.get('phone')?.invalid && updateBio.get('phone')?.touched"  class="text-red-600 ">
                             <p *ngIf="updateBio.get('phone')?.hasError('required')">phonenumber is required.</p>

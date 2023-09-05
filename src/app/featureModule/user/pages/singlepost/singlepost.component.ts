@@ -11,6 +11,10 @@ import * as moment from 'moment';
 import { signupinterface } from '../../interface/signup';
 import { ReplaysocketService } from 'src/app/coreModule/service/replaysocket.service';
 import { UsersService } from 'src/app/coreModule/service/users.service';
+import { environment } from 'src/environments/environment';
+import { Comments } from '../../interface/comments';
+import { addpostinterface } from '../../interface/addpost';
+import { Chat } from '../../interface/chat';
 
 @Component({
   selector: 'app-singlepost',
@@ -19,12 +23,13 @@ import { UsersService } from 'src/app/coreModule/service/users.service';
 })
 export class SinglepostComponent implements OnInit,OnDestroy{
 menutoggle=false
-postdetailsData:any;
-commentData!:any[]
-chats?:Observable<any[] | undefined>;
-user?:signupinterface
+postdetailsData!:addpostinterface | undefined;
+commentData!:any
+chats?:Observable<Chat[] | undefined>;
+user?:signupinterface | undefined
 likes?:boolean
 replay_input:string=''
+apiurl=environment.hostName
 @ViewChild('content') content!: ElementRef;
   message_input: string='';
   id!:string
@@ -32,17 +37,13 @@ replay_input:string=''
   commenttoggle=false;
   constructor(private store:Store<appstateinterface>,private route: ActivatedRoute,private renderer: Renderer2, private el: ElementRef,private socketService: SocketService ,public replaysocket:ReplaysocketService,private service:UsersService,private router: Router){
 
-    this.store.pipe(select(singlepostdetails)).subscribe((data)=>{
+    this.store.pipe(select(singlepostdetails)).subscribe((data)=>{      
       this.postdetailsData=data
-      console.log(this.postdetailsData,'singlepost');
       if(localStorage.getItem('token')){
         if(this.postdetailsData){
-          console.log(this.postdetailsData);
-          if(this.postdetailsData.likes?.length>0 && this.postdetailsData.likes?.includes(this.user?._id) ){
-            console.log('true');
+          if( this.postdetailsData.likes && this.postdetailsData.likes?.length>0 && this.postdetailsData.likes?.includes(this.user?._id) ){
             this.likes=true
           }else{
-            console.log('false+++++++++++++++++++++++++++++++==');
             this.likes=false
           }
       }
@@ -60,37 +61,18 @@ replay_input:string=''
       this.user=user
   })
     this.store.pipe(select(comments)).subscribe((data)=>{
-      this.commentData=data
-      console.log(data,'comment');
+      this.commentData=data[0]
     })
   }
   
-  ngAfterViewInit(){
-  //   if(localStorage.getItem('token')){
-  //     if(this.postdetailsData){
-  //       console.log(this.postdetailsData);
-  //       if(this.postdetailsData.likes.includes(this.user?._id) && this.postdetailsData.likes.length>0){
-  //         console.log('true');
-  //         this.likes=true
-  //       }else{
-  //         console.log('false+++++++++++++++++++++++++++++++==');
-  //         this.likes=false
-  //       }
-  //   }
-  // }
-  }
   ngOnInit(): void {
     // this.renderer.setStyle(document.body, 'overflow', 'hidden');
 
-    this.socketService.on('new-message',(data:any)=>{
-      console.log(data,'backend');
+    this.socketService.on('new-message',(data:string)=>{
       this.commentData=data
-      console.log(data); 
     })
-    this.replaysocket.on('new-replay',(data:any)=>{
-      console.log(data,'replaybackend');
+    this.replaysocket.on('new-replay',(data:string)=>{
       this.commentData=data
-      console.log(data); 
     })
     window.scrollTo(0, 0);
   }
@@ -104,9 +86,7 @@ singlepost(id:string){
 this.store.dispatch(action.getsinglepost({postid:id}))
 }
 
-send_message(f: NgForm):any{
-  console.log(this.message_input);
-  
+send_message(f: NgForm):string| void{  
   if(this.message_input.trim().length<1)return this.message_input ='';
   if(f.invalid)return;
   
@@ -115,9 +95,7 @@ send_message(f: NgForm):any{
   this.message_input =''
   }
 
-  send_replay(f: NgForm):any{
-    console.log(this.message_input);
-    
+  send_replay(f: NgForm):string|void{    
     if(this.message_input.trim().length<1)return this.message_input ='';
     if(f.invalid)return;
     
@@ -130,11 +108,14 @@ send_message(f: NgForm):any{
     this.store.dispatch(action.comments({id:id}))
   }
 
-  getDateRelative(date:Date): string {
-    return moment(date).fromNow();
+  getDateRelative(date:Date | undefined) {
+    if(date){
+      return moment(date).fromNow();
+    }else{
+      return "Date not available";
+    }
   }
   toggleLike() {
-    console.log(this.likes);
     this.likes = !this.likes;
     this.like();
   }
@@ -144,20 +125,18 @@ send_message(f: NgForm):any{
   }
 
   userData(){
-    console.log("USERNEW");
     this.store.dispatch(action.getuser())
   }
-  readlist(id:string){
-    console.log(id);
-    this.store.dispatch(action.addreadlist({id:id}))
+  readlist(id:string | undefined){
+    if(id){
+      this.store.dispatch(action.addreadlist({id:id}))
+    }
   }
   dropclick(id:string){
-    console.log(id);
     this.commentid=id
     this.commenttoggle=!this.commenttoggle
   }
-  replay_message(f: NgForm,id:string):any{
-    console.log(this.replay_input);
+  replay_message(f: NgForm,id:string):string| void{
     if(this.replay_input.trim().length<1)return this.replay_input ='';
     if(f.invalid)return;
     
@@ -167,8 +146,6 @@ send_message(f: NgForm):any{
   }
 
   deletecomment(id:string){
-    console.log(id);
-    
     this.service.deletecomment(id).subscribe(()=>{
       this.comments(this.id)
     })

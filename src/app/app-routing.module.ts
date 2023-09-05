@@ -14,7 +14,6 @@ const routes: Routes = [
 
 export function errorHandler(router: Router) {
   return (error: any) => {
-    console.error('An error occurred:', error);
     router.navigate(['/error']); // navigate to error page
   };
 }

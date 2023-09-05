@@ -15,7 +15,7 @@ export class AddtagsComponent implements OnInit{
    
   files: File[] = [];
   message!:string
-  onSelect(event:any) {     
+  onSelect(event:any) {         
     if(this.files.length==0 && event.addedFiles.length==1){
       this.files.push(...event.addedFiles);
     }else{
@@ -23,11 +23,10 @@ export class AddtagsComponent implements OnInit{
     }
   }
   onRemove(event:File) {
-    console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
   }
   imageDrop(){
-    console.log(this.files);
+
   }
 
   tags=new FormGroup({
@@ -37,8 +36,7 @@ export class AddtagsComponent implements OnInit{
 
   addtag(){
    if (this.tags.valid) {
-    if(this.files.length==1){
-      
+    if(this.files.length==1){      
       this.store.dispatch(tag.addtag({TagData:this.tags.value,image:this.files}))
     }else{
       this.message="please add one image"

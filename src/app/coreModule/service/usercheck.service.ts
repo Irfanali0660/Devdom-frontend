@@ -13,7 +13,6 @@ export class UsercheckService {
   constructor(private store:Store<appstateinterface>) { 
     this.store.pipe(select(signupSelector)).subscribe((data)=>{
       this.signup=data
-      console.log(data,'dataa');
       })
   }
   getuserstatus(){

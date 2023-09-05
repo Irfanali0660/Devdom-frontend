@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Renderer2, ViewChild ,Input,OnInit} from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Store, select } from '@ngrx/store';
@@ -9,6 +9,10 @@ import { chatmessage, getuserlist, signupSelector } from '../../store/selector';
 import moment from 'moment';
 // import { ThemeService } from "stream-chat-angular";
 import { Observable, Subject } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { emojiinterface } from '../../interface/emoji';
+import { Chat } from '../../interface/chat';
+import { userinterface } from '../../interface/user';
 
 @Component({
   selector: 'app-singlechat',
@@ -16,46 +20,41 @@ import { Observable, Subject } from 'rxjs';
   styleUrls: ['./singlechat.component.css']
 })
 export class SinglechatComponent implements OnInit{
-  roomid: any;
+  roomid?: string;
   message_input: string='';
-  id: any;
-  chatmessage: any;
-  userData: any;
+  id?: string;
+  chatmessage:any
+  userData: userinterface[]=[];
   isEmojiPickerVisible!: boolean;
-
-  constructor(private route: ActivatedRoute ,private socketchatService:ChatsocketService,private store:Store<appstateinterface>){
+  apiurl=environment.hostName
+  constructor(private route: ActivatedRoute ,private socketchatService:ChatsocketService,private store:Store<appstateinterface>,private renderer: Renderer2){
     this.route.params.subscribe(params => {
       this.chat(params['id'])
       this.user(params['userid'])
 
       this.socketchatService.connect({roomid:params['id']},{token: localStorage.getItem('token')??'noAcToken'})
     });
-
     this.store.pipe(select(signupSelector)).subscribe((data)=>{
-      this.id=data._id
-      console.log(this.id,"signup");
-      
+      this.id=data._id      
      }) 
       this.store.pipe(select(chatmessage)).subscribe((data)=>{
       this.chatmessage=data
-      console.log(data); 
      })
-    //  this.theme$ = themeService.theme$;
   }
   ngOnInit(): void {
-    this.socketchatService.on('chat',(chat:any)=>{
-      console.log(chat,'chatreplay');
+    this.socketchatService.on('chat',(chat:Chat)=>{
       this.chatmessage=chat
     })
   }
 
 
-  send_message(f: NgForm):any{
-    console.log(this.message_input);
-    
+
+
+
+  send_message(f: NgForm):string | void{
     if(this.message_input.trim().length<1)return this.message_input ='';
     if(f.invalid)return;
-    
+  
     this.socketchatService.emit('chat',this.message_input)
     
     this.message_input =''
@@ -68,8 +67,6 @@ export class SinglechatComponent implements OnInit{
     user(id:string){
       this.store.pipe(select(getuserlist)).subscribe((user)=>{
         this.userData=user.filter((dt)=>{return dt._id==id}) 
-        console.log(this.userData);
-          
       })
     }
     gettime(date:string | null | undefined ): string {
@@ -83,7 +80,7 @@ export class SinglechatComponent implements OnInit{
 
 
 
-  emojiSelected(event: any) {
+  emojiSelected(event: emojiinterface) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     this.emojiInput$?.next(event.emoji.native);
   }
@@ -107,7 +104,7 @@ export class SinglechatComponent implements OnInit{
       window.removeEventListener("click", this.eventHandler);
     }
   }
-  addEmoji(event:any) {
+  addEmoji(event:emojiinterface) {
     this.message_input += event.emoji.native;
     this.isEmojiPickerVisible = false;
  }  

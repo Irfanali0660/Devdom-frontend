@@ -22,8 +22,6 @@ isLoading$:Observable<Boolean>
 public loader = NgxLoader;
 constructor(private store:Store<appstateinterface>,private loaderservice: NgxHttpLoaderService){
    this.isLoading$=this.store.pipe(select(isLoadingSelector))   
-   console.log(this.isLoading$,"loading ++++++++++");
-   
 }
   forgot= new FormGroup({
     'email': new FormControl('',[Validators.required, Validators.pattern(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)]),  
@@ -31,7 +29,6 @@ constructor(private store:Store<appstateinterface>,private loaderservice: NgxHtt
  
     forgotpass(){
       if(this.forgot.valid){
-        console.log(this.forgot.value);
         this.store.dispatch(auth.forgotpass({email:this.forgot.value.email}))
       }
     }

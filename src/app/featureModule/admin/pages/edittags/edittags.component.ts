@@ -6,7 +6,8 @@ import * as tag from '../../store/action'
 import { singletagdetails } from '../../store/selector';
 import { ActivatedRoute,Router } from '@angular/router';
 import { taginterface } from '../../interfaces/taginterface';
-
+import { environment } from 'src/environments/environment';
+import { NgxDropzoneChangeEvent } from 'ngx-dropzone';
 
 @Component({
   selector: 'app-edittags',
@@ -27,28 +28,25 @@ export class EdittagsComponent implements OnInit {
 
   constructor(private store:Store<appstateinterface>,private route: ActivatedRoute ,private router:Router){
     this.store.pipe(select(singletagdetails)).subscribe((data)=>{
-      console.log(data?.image);
       this.tag=data
-      console.log(this.tag?._id);
     })
   }
+
+  apiurl=environment.hostName
    
   files: File[] = [];
   message!:string
-  onSelect(event:any) {     
+  onSelect(event:NgxDropzoneChangeEvent) {         
     if(this.files.length==0 && event.addedFiles.length==1){
       this.files.push(...event.addedFiles);
     }else{
-      console.log("no required");
       this.message="Only one image required"
     }
   }
   onRemove(event:File) {
-    console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
   }
   imageDrop(){
-    console.log(this.files);
   }
 
   tags=new FormGroup({
@@ -57,19 +55,13 @@ export class EdittagsComponent implements OnInit {
     'id':new FormControl('')
   })
 
-  gettagdetails(tagid:string){
-    this.store.dispatch(tag.gettagDetails({id:tagid}))
+  gettagdetails(id:string | number){
+    this.store.dispatch(tag.gettagDetails({id:id}))
   }
 
   edittag(){
    if (this.tags.value) {
-
-      console.log("hello");
-      
-      console.log(this.tags.value);
-      
       this.store.dispatch(tag.edittag({TagData:this.tags.value,image:this.files}))
-  
    }else{
     this.message="Enter the values"
    }

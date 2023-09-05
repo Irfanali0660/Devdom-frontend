@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Socket, SocketIoConfig } from 'ngx-socket-io';
+import { Chat } from 'src/app/featureModule/user/interface/chat';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -22,11 +23,10 @@ export class ChatsocketService {
     
   }
   
-  connect(q:any,auth?:{token:string}) {
+  
+  connect(q:{roomid:string},auth?:{token:string}) {   
     this.options.options = {...this.options.options, query : q,auth};
-    this.socket = new Socket(this.options);
-    console.log('connect!!');
-   
+    this.socket = new Socket(this.options);   
     this.socket.connect();
   }
 
@@ -36,12 +36,8 @@ export class ChatsocketService {
 
   on(eventName: string, callback: Function) {
     this.socket.on(eventName, callback);
-    // this.socket.fromEvent(eventName).subscribe((message: unknown) => {callback(message)})
   }
 
-  emit(eventName: string, data: any, callback?: Function) {
-    // this.socket.ioSocket.io.query = {channelId}
-    // this.socket.io('/my-namespace').query = { channelId };
-
+  emit(eventName: string, data: string, callback?: Function) {
     this.socket.emit(eventName, data, callback);
   }}

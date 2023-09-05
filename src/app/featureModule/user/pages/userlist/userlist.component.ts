@@ -21,7 +21,6 @@ constructor(private store:Store<appstateinterface>,private service:UsersService)
 this.userlist()
 this.store.pipe(select(getlist)).subscribe((list)=>{
   this.list=list
-  console.log(this.list,'list');
 })
 }
 

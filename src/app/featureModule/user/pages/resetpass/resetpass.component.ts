@@ -46,7 +46,6 @@ export class ResetpassComponent implements OnInit{
   reset(){
     if(this.resetpass.valid){
       if(this.resetpass.value.password === this.resetpass.value.confirmpassword){
-        console.log(this.resetpass.value);
         this.store.dispatch(auth.resetpass({formData:this.resetpass.value}))
       }else{
         this.error = 'confirm password is incorrect';

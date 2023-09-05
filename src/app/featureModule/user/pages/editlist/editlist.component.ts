@@ -12,6 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import moment from 'moment';
 import { UsersService } from 'src/app/coreModule/service/users.service';
 import Swal from 'sweetalert2';
+import { Addtags } from 'src/app/featureModule/admin/interfaces/addtags';
 
 @Component({
   selector: 'app-editlist',
@@ -27,32 +28,28 @@ export class EditlistComponent {
     _id?:string | null
     title?:String| null 
     details?:String| null 
-    category?:any
+    category?:listinterface
     expdate?:string | null
     date?:string| null
     location?:string | null
-    tags?:any
-   }={ 
-    
-    tags:this.tags}
+    tags?:Addtags
+   }={ tags:this.tags}
    
   constructor(private store:Store<appstateinterface>,private route: ActivatedRoute,private service:UsersService,private router:Router){
     this.store.pipe(select(getlistcategory)).subscribe((listcategory)=>{
-      this.listcategory=listcategory
-      console.log(this.listcategory);
+      this.listcategory=listcategory      
   })
   this.route.params.subscribe(params => {
     this.editList(params['id'])
     this.store.pipe(select(editlist)).subscribe((data)=>{
-      console.log(data,'dataaaaaa edit fff');
-  
+     if(data){
       this.data.title=data.title
       this.data.details=data.details
       this.data.category=data.category._id
       this.data.expdate=data.expdate
       this.data.location=data.location  
       this.data._id=data._id
-      console.log(this.data,'titleee');
+     }
     })
   });
   }
@@ -64,10 +61,8 @@ export class EditlistComponent {
   tagerror!:string | boolean ;
 
   add(event: MatChipInputEvent): void {
-    console.log(event);
     
     let occurrences = this.tags.filter((el) => el === event.value).length;
-    console.log(occurrences);
    if(occurrences==0){
     if (this.tags.length < 5) {
     const value = (event.value || '').trim();
@@ -93,7 +88,7 @@ export class EditlistComponent {
 }
   }
 
-  remove(tag: any): void {
+  remove(tag: string): void {
     const index = this.tags.indexOf(tag);
 
     if (index >= 0) {
@@ -101,7 +96,7 @@ export class EditlistComponent {
     }
   }
 
-  edit(tag: any, event: MatChipEditedEvent) {
+  edit(tag: string, event: MatChipEditedEvent) {
     const value = event.value.trim();
 
     // Remove tag if it no longer has a name

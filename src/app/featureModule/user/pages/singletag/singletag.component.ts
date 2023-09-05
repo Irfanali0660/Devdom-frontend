@@ -6,6 +6,7 @@ import { taginterface } from 'src/app/featureModule/admin/interfaces/taginterfac
 import { ActivatedRoute } from '@angular/router';
 import * as action from '../../store/action'
 import { addpostinterface } from '../../interface/addpost';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -14,9 +15,9 @@ import { addpostinterface } from '../../interface/addpost';
   styleUrls: ['./singletag.component.css']
 })
 export class SingletagComponent implements OnInit{
-  tagdetailsData!:any;
+  tagdetailsData!:taginterface;
   tagpostData!:any
-
+  apiurl=environment.hostName
   constructor(private store:Store<appstateinterface>,private route: ActivatedRoute){
     this.store.pipe(select(singletag)).subscribe((data)=>{
       this.tagdetailsData=data
@@ -26,9 +27,7 @@ export class SingletagComponent implements OnInit{
       this.singletag(params['id'])
     });
     this.store.pipe(select(getpostdetailsselector)).subscribe((data)=>{
-      this.tagpostData=data
-      console.log(this.tagpostData,'tagData');
-      
+      this.tagpostData=data      
      })
    }
   ngOnInit(): void {

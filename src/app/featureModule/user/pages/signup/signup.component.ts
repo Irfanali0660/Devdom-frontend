@@ -5,7 +5,7 @@ import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition
 import { Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import { appstateinterface } from 'src/app/appSatate.interface';
-import * as auth from '../../store/action' 
+import * as auth from '../../store/action'
 import { SocialAuthService } from '@abacritt/angularx-social-login';
 import { errorSelector } from '../../store/selector';
 
@@ -25,13 +25,10 @@ export class SignupComponent implements OnInit {
     this.authservice.authState.subscribe((user) => {
       this.user = user;
       this.loggedIn = (user != null);
-      console.log(this.user)
       this.store.dispatch(auth.socialsignup({token:this.user.idToken}))
     });
     this.store.pipe(select(errorSelector)).subscribe((err)=>{
       this.iserror$=err
-      console.log(this.iserror$);
-      
       setTimeout(() => {
         this.iserror$=null
       }, 3000);
@@ -81,10 +78,8 @@ export class SignupComponent implements OnInit {
   // submitsignup() {
   //   if (this.signup.value.password === this.signup.value.conformpassword) {
   //     if (this.signup.valid) {
-  //       console.log(this.signup.value);
   //       const data = JSON.stringify(this.signup.value)
-  //       this.service.SignupData(this.signup.value).subscribe((data: any) => {
-  //         console.log(data);
+  //       this.service.SignupData(this.signup.value).subscribe((data) => {
   //         if (data.success) {
   //           this._snackbar.open('Login successfully', 'close', {
   //             horizontalPosition: this.horizontalPosition,

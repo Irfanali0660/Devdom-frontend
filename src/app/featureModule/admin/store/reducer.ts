@@ -40,7 +40,7 @@ export const reducer=createReducer(initialState,
     on(adminAction.liststatussuccess,(state)=>({...state,isLoading:false,error:null})),
 
     on(adminAction.getreportedpost,(state)=>({...state,isLoading:true,error:null})),
-    on(adminAction.getreportedpostsuccess,(state,action)=>({...state,isLoading:false,error:null,reportpostData:action.reportpost})),
+    on(adminAction.getreportedpostsuccess,(state,action)=>({...state,isLoading:false,error:null,reportpostData:[action.reportpost]})),
 
     on(adminAction.deletepost,(state)=>({...state,isLoading:true,error:null})),
     on(adminAction.deletepostsuccess,(state)=>({...state,isLoading:false,error:null})),

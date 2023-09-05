@@ -16,20 +16,18 @@ data={
   email:'',
   password:''
   }
-  Response:any;
+  Response?:string | null;
   adsubmit() {
-    console.log(JSON.stringify(this.data)); 
       const data=JSON.stringify(this.data)
-      this.service.adminlogin(data).subscribe((data)=>{
-        console.log(JSON.stringify(data)+"Response");
+      this.service.adminlogin(this.data).subscribe((data)=>{        
         if(data.failed){
           this.Response=data.failed;
           setTimeout(() => {
             this.Response=null;
           }, 5000);
         }else{
-          localStorage.setItem('adtoken',data.token.token)
-          localStorage.setItem('adtokenExp',data.token.exp)
+          localStorage.setItem('adtoken',(data.token!.token as string))
+          localStorage.setItem('adtokenExp',(data.token!.exp as number).toString())
           this.route.navigate(['admin/dashboard'])
         }
       })

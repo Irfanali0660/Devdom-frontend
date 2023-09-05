@@ -21,7 +21,7 @@ import { tagselector } from '../../store/selector';
 })
 export class NewpostComponent implements AfterViewInit, OnInit {
   
-  title(title: any) {
+  title() {
     throw new Error('Method not implemented.');
   }
   coverimage!:File;
@@ -55,9 +55,7 @@ export class NewpostComponent implements AfterViewInit, OnInit {
     this.filteredTag = this.tagCtrl.valueChanges.pipe(
       startWith(null),
       map((fruit: string | null) => (fruit ? this._filter(fruit) : this.alltags.slice())),
-    );
-   console.log(this.encodedString);
-   
+    );   
   }
   init(): void {
    
@@ -72,7 +70,6 @@ for (let i = 0; i < elements.length; i++) {
   const element = elements[i] as HTMLElement;
   this.editorContent=this.sanitizer.bypassSecurityTrustHtml(element.innerHTML);
   this.content=element.innerHTML
-  console.log(this.editorContent,"Editor");
 }
   }
   addpost(){
@@ -94,15 +91,11 @@ for (let i = 0; i < elements.length; i++) {
   filteredTag: Observable<string[]>;
   tags: string[] = [];
   alltags: string[] = []
-  image!:any
+  image!:File
 
 
 
   add(event: MatChipInputEvent): void {
-    console.log("HELLOO");
-    
-    console.log(this.tags.length);
-    
     if (this.tags.length < 3) {
       const value = (event.value || '').trim();
 
@@ -119,8 +112,6 @@ for (let i = 0; i < elements.length; i++) {
   }
 
   remove(fruit: string): void {
-    console.log("REMOVE");
-    
     const index = this.tags.indexOf(fruit);
 
     if (index >= 0) {
@@ -130,7 +121,6 @@ for (let i = 0; i < elements.length; i++) {
 
   selected(event: MatAutocompleteSelectedEvent): void {
     let occurrences = this.tags.filter((el) => el === event.option.viewValue).length;
-    console.log(occurrences);
    if(occurrences==0){
     if(this.tags.length < 4){
       this.tags.push(event.option.viewValue);
@@ -168,7 +158,6 @@ if (input) {
     reader.onload = () => {
       // convert the loaded file to a Base64 encoded string
       this.encodedString = reader.result ;
-      console.log(typeof reader.result);
       
       // use the Base64 encoded string as needed (e.g. send it to a server, display it in an <img> tag)
     };

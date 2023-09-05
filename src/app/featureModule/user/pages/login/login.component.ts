@@ -34,7 +34,6 @@ constructor(private store:Store<appstateinterface>, private service:UsersService
   this.gAuthSubsciption=this.authService.authState.subscribe((user) => {
     this.user = user;
     this.loggedIn = (user != null);
-    console.log(this.user)
     this.store.dispatch(auth.sociallogin({formData:this.user.idToken}))
   });
   }
@@ -56,14 +55,12 @@ constructor(private store:Store<appstateinterface>, private service:UsersService
 
   submitlogin(){
     if(this.Login.valid){
-      console.log("HELLO");
       this.store.dispatch(auth.login({formData: this.Login.value, isuser:true}))
     }
   }
 
   // submitlogin(){
   //   if (this.Login.valid) {
-  //   console.log(JSON.stringify(this.Login.value)); 
   //   const data=JSON.stringify(this.Login.value)
   //   this.service.loginData(this.Login.value).subscribe((data)=>{
   //     if (data.success) {

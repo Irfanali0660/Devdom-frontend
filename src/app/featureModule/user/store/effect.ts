@@ -16,7 +16,7 @@ export class authEffects {
     verticalPosition: MatSnackBarVerticalPosition = 'top';
 
     Login = createEffect(() =>
-        this.actoins$.pipe(ofType(Action.login), mergeMap((action: any) => {
+        this.actoins$.pipe(ofType(Action.login), mergeMap((action) => {
             return this.userservice.loginData(action.formData).pipe(map((data) => {
                 if (data.success) {
                     this._snackbar.open('Login successfully', 'close', {
@@ -25,12 +25,20 @@ export class authEffects {
                         duration: 4000,
                         panelClass: ['my-snackbar']
                     })
-                    localStorage.setItem('token', data.token.token)
-                    localStorage.setItem('tokenExp', data.token.exp)
+                    if (data.token && data.token.token) {
+                        localStorage.setItem('token', data.token.token);
+                      }
+                      if (data.token && data.token.exp) {
+                        localStorage.setItem('tokenExp', data.token.exp.toString());
+                      }
                     this.route.navigate(['/'])
-                    return Action.loginsuccess({signup:data.user})
+                    if (data.user !== undefined && data.user !== null) {
+                        return Action.loginsuccess({ signup: data.user });
+                      } else {
+                        return Action.loginfailure({ error: 'User data not available' });
+                      }
                 } else {
-                    return Action.loginfailure({ error: data.failed })
+                    return Action.loginfailure({ error: data.failed ?? 'invalid error' })
                 }
             }
             ))
@@ -47,12 +55,20 @@ export class authEffects {
                         duration: 4000,
                         panelClass: ['my-snackbar']
                     })
-                    localStorage.setItem('token', data.token.token)
-                    localStorage.setItem('tokenExp', data.token.exp)
+                    if (data.token?.token) {
+                        localStorage.setItem('token', data.token.token);
+                    }
+                    if (data.token?.exp) {
+                        localStorage.setItem('tokenExp', data.token.exp.toString());
+                    }
                     this.route.navigate(['/'])
-                    return Action.loginsuccess({signup:data.data})
+                    if (data.data !== undefined && data.data !== null) {
+                        return Action.loginsuccess({signup:data.data})
+                    } else {
+                        return Action.loginfailure({ error: 'User data not available' });
+                      }
                 } else {
-                    return Action.loginfailure({ error: data.failed })
+                    return Action.loginfailure({ error: data.failed ?? "invalid error"})
                 }
             }))
         }))
@@ -67,14 +83,18 @@ export class authEffects {
                 //   verticalPosition: this.verticalPosition,
                 //   duration: 6000,
                 // })
-                localStorage.setItem('token', data.token.token)
-                localStorage.setItem('tokenExp', data.token.exp)
+                if (data.token?.token) {
+                    localStorage.setItem('token', data.token.token);
+                }
+                if (data.token?.exp) {
+                    localStorage.setItem('tokenExp', data.token.exp.toString());
+                }
                 this.route.navigate(['/otp'])
                 this.store.dispatch(Action.generateotp())
                 
                 return Action.signupsuccess({data:data.data})
               } else {
-                return Action.signupfailure({ error: data.failed })
+                return Action.signupfailure({ error: data.failed ?? 'invalid error'  })
               }
         }))
     })))
@@ -82,10 +102,14 @@ export class authEffects {
     socialsignup=createEffect(()=>
     this.actoins$.pipe(ofType(Action.socialsignup),mergeMap((action)=>{
         return this.userservice.socialsignup(action.token).pipe(map((data)=>{
-            localStorage.setItem('token', data.token.token)
-            localStorage.setItem('tokenExp', data.token.exp)
+            if (data.token?.token) {
+                localStorage.setItem('token', data.token.token);
+            }
+            if (data.token?.exp) {
+                localStorage.setItem('tokenExp', data.token.exp.toString());
+            }
             this.route.navigate(['/'])
-            return Action.socialsignupsuccess()
+            return Action.addlikesuccess()
         }))
     }))
     )
@@ -94,14 +118,7 @@ export class authEffects {
     this.actoins$.pipe(ofType(Action.otp),mergeMap((action)=>{
     return this.userservice.otp(action.value).pipe(map((data)=>{
         if(data.success){
-            
-            //   this._snackbar.open('Login successfully', 'close', {
-            //       horizontalPosition: this.horizontalPosition,
-            //       verticalPosition: this.verticalPosition,
-            //       duration: 6000,
-            //     })
-            //     localStorage.setItem('token', data.token.token)
-            //     localStorage.setItem('tokenExp', data.token.exp)
+ 
                 this.route.navigate(['/'])
                 
             return Action.otpsuccess({signup:data.data})
@@ -115,10 +132,17 @@ export class authEffects {
    addpost=createEffect(()=>
    this.actoins$.pipe(ofType(Action.addpost),mergeMap((action)=>{
     return this.userservice.addpost(action.post).pipe(map((data)=>{        
-       if(data.Error){
-        console.log(data.Error);
-        alert(data.Error)
-        return Action.error()
+       if(data.message){
+        Swal.fire({
+            toast: true,
+            position: 'top',
+            showConfirmButton: false,
+            icon: 'error',
+            timerProgressBar:false,
+            timer: 5000,
+            title: data.message
+          })       
+           return Action.error()
        }else{
         this._snackbar.open('Post added', 'close', {
             horizontalPosition: this.horizontalPosition,
@@ -238,7 +262,7 @@ this.actoins$.pipe(ofType(Action.resetpass),
                     }, 4000);
                     return Action.resetpasssuccess()
                 }else{
-                    return Action.loginfailure({error:data.failed})
+                    return Action.loginfailure({error:data.failed ?? 'Invalid error'})
                 }
             })
         )
@@ -251,7 +275,7 @@ this.actoins$.pipe(ofType(Action.comments),
 mergeMap((action)=>{
     return this.userservice.comments(action.id).pipe(
         map((data)=>{
-            return Action.commentssuccess({data:data})
+            return Action.commentssuccess({data:[data]})
         })
     )
 })
@@ -292,17 +316,14 @@ this.actoins$.pipe(ofType(Action.addnewlist),mergeMap((action)=>{
             return Action.addnewlistsucces()
         })
     )
-}))
-)
+})))
 getlist=createEffect(()=>
 this.actoins$.pipe(ofType(Action.getlist),exhaustMap(()=>{
     return this.userservice.getlist().pipe(
         map((data)=>{
             return Action.getlistsuccess({list:data})
-        })
-    )
-}))
-)
+        }))
+})))
 
 tagpost=createEffect(()=>
 this.actoins$.pipe(ofType(Action.tagpost),mergeMap((action)=>{

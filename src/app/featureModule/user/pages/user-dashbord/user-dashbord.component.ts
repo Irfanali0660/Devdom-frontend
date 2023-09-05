@@ -9,6 +9,7 @@ import * as action from '../../store/action'
 import { UsersService } from 'src/app/coreModule/service/users.service';
 import * as auth from '../../store/action' 
 import Swal from 'sweetalert2';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-user-dashbord',
@@ -23,11 +24,10 @@ export class UserDashbordComponent {
   }
   user(){
     this.store.pipe(select(signupSelector)).subscribe((data)=>{
-      console.log(data);
       this.userData=data
-      console.log(data,'dataa');
     })
   }
+  apiurl=environment.hostName
 
   getexpdate(date:string | null | undefined |Date): string {
     return moment(date).format('MMM DD YYYY');
@@ -48,23 +48,26 @@ export class UserDashbordComponent {
 
   bio(){
     if(this.updateBio.valid){
-      console.log(this.updateBio.value);
       this.store.dispatch(action.updateBio({form:this.updateBio.value}))
       this.user()
     } 
   }
-  uploadProfile(event:any){
-
-    console.log(event);
+  uploadProfile(event:Event){
     const formData = new FormData();
     try {
-      formData.append('avatar', event.target.files[0]);
+      // formData.append('avatar', event.target.files[0]);
       // Rest of the code to handle the FormData object
+
+      const inputElement = event.target as HTMLInputElement;
+    if (inputElement?.files && inputElement.files.length > 0) {
+      const formData = new FormData();
+      formData.append('avatar', inputElement.files[0]);
+      // Now you can use formData for uploading
+    }
     } catch (error) {
       console.error(error);
-    }    console.log(formData);
-    this.service.updateproimg(formData,this.userData._id).subscribe((data:any)=>{
-      console.log(data);
+    }   
+    this.service.updateproimg(formData,this.userData._id).subscribe((data:{success?:string,failed?:string,status?:number})=>{      
      if(data.success){
       this.getuser()
       this.user()

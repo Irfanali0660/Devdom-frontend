@@ -8,6 +8,7 @@ import * as auth from '../../store/action'
 import { userinterface } from '../../interface/user';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-slidebar',
@@ -22,11 +23,11 @@ export class SlidebarComponent {
 constructor(private store:Store<appstateinterface>,private userservice: UsersService,private route: Router){
   this.isLoading$=this.store.pipe(select(isLoadingSelector))
 }
+apiurl=environment.hostName
   ngOnInit(): void {
     this.apilogincheck()
     this.store.pipe(select(signupSelector)).subscribe((data)=>{
       this.userData=data
-      console.log(data,'dataa');
     })
     this.getuser()
   }
@@ -56,11 +57,9 @@ constructor(private store:Store<appstateinterface>,private userservice: UsersSer
   }
 notfi(){
   this.notification=!this.notification
-  console.log(this.notification);
 }
 
 menuclick(){
   this.menu=!this.menu
-  console.log(this.menu);
 }
 }

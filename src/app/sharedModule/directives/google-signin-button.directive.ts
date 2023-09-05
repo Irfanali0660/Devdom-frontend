@@ -15,7 +15,7 @@ export class GoogleSigninButtonDirective {
   ngOnInit() {
     if (!this.option) return;
     this.socialAuthService.initState.pipe(take(1)).subscribe(() => {
-        google.accounts.id.renderButton(this.el.nativeElement, {
+        google.accounts.id.renderButton(this.el.nativeElement,{
             type: 'standard',
             size: 'large',
             text: this.buttonText, // Use the buttonText input to set the content of the button
@@ -23,6 +23,5 @@ export class GoogleSigninButtonDirective {
             
         });
     });
-}
-
+  }
 }

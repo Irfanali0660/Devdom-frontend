@@ -4,6 +4,7 @@ import { Map, NavigationControl, Marker } from 'maplibre-gl';
 import { UsersService } from 'src/app/coreModule/service/users.service';
 import { addlistinterface } from '../../interface/addlist';
 import moment from 'moment';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-singlelisting',
@@ -11,7 +12,7 @@ import moment from 'moment';
   styleUrls: ['./singlelisting.component.css']
 })
 export class SinglelistingComponent implements OnInit,OnDestroy{  
-  list!: addlistinterface;
+  list!: addlistinterface | undefined;
 
 
 
@@ -28,19 +29,19 @@ constructor(private route: ActivatedRoute,private service:UsersService){
   ngOnInit(): void {
   }
   singlelist(id:string){
-    this.service.singlelist(id).subscribe((list)=>{
-      this.list=list
+    this.service.singlelist(id).subscribe((list1)=>{
+      this.list=list1
       this.initmap(this.list)
-      console.log(list);   
     })
   }
-    initmap(list:any){
-      const initialState = { lng:list.longitude,lat: list.latitude, zoom: 14 };
+  apiurl=environment.hostName
+    initmap(list:addlistinterface){
+      const initialState = { longitude:list.longitude,latitude: list.latitude, zoom: 14 };
 
     this.map = new Map({
       container: this.mapContainer.nativeElement,
       style: `https://api.maptiler.com/maps/streets/style.json?key=KPOlDn1YjHHmA6pUZnAQ`,
-      center: [initialState.lng, initialState.lat],
+      center: [initialState.longitude ?? 0, initialState.latitude ?? 0],
       zoom: initialState.zoom
       
     });
@@ -48,7 +49,7 @@ constructor(private route: ActivatedRoute,private service:UsersService){
     this.map.addControl(new NavigationControl({}));
    
       new Marker({color: "#FF0000"})
-      .setLngLat([list.longitude,list.latitude])
+      .setLngLat([list.longitude ?? 0,list.latitude  ?? 0])
       .addTo(this.map)
     }
   ngOnDestroy() {

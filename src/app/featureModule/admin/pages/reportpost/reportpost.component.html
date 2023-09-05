@@ -7,7 +7,7 @@
                     <header class="mb-4 lg:mb-6 not-format ">
                         <address class="flex items-center mb-6 not-italic ">
                             <div class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white ">
-                                <img  *ngIf="reportData?.reporterId?.image || reportData?.reporterId?.googleimage else image" class="mr-4 w-12 h-12 rounded-full" [src]="reportData?.reporterId?.image" [src]="reportData?.reporterId?.googleimage ? reportData?.reporterId?.googleimage : 'https://devbackend.irfanali.club/images/'+reportData?.reporterId?.image" alt="image">
+                                <img  *ngIf="reportData?.reporterId?.image || reportData?.reporterId?.googleimage else image" class="mr-4 w-12 h-12 rounded-full" [src]="reportData?.reporterId?.image" [src]="reportData?.reporterId?.googleimage ? reportData?.reporterId?.googleimage : apiurl+'/images/'+reportData?.reporterId?.image" alt="image">
                                 <ng-template #image>
                                     <img class="mr-4 w-12 h-12 rounded-full" src="https://www.pngmart.com/files/22/User-Avatar-Profile-Background-Isolated-PNG.png" alt="">
                                 </ng-template>
@@ -25,7 +25,7 @@
             </div>
             <div >
                 <div  class="flexr mb-6" > 
-                    <img   [src]="'https://devbackend.irfanali.club/images/'+reportData.postId.image" alt="" style="width:30rem;">
+                    <img   [src]="apiurl+'/images/'+reportData.postId.image" alt="" style="width:30rem;">
                     <h1 class="text-red-600">{{reportData.issue}}</h1>
                 </div>
                    

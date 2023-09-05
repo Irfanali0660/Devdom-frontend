@@ -263,7 +263,7 @@
                 </label>
               <p class="crayons-reaction__count text-center font-bold mb-4" id="reaction_total_count">{{postdetailsData?.likes?.length}}</p>
 
-              <svg (click)="readlist(postdetailsData._id)" width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" transform="matrix(1, 0, 0, 1, 0, 0)rotate(0)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.43200000000000005"></g><g id="SVGRepo_iconCarrier"> <path d="M19 19.2674V7.84496C19 5.64147 17.4253 3.74489 15.2391 3.31522C13.1006 2.89493 10.8994 2.89493 8.76089 3.31522C6.57467 3.74489 5 5.64147 5 7.84496V19.2674C5 20.6038 6.46752 21.4355 7.63416 20.7604L10.8211 18.9159C11.5492 18.4945 12.4508 18.4945 13.1789 18.9159L16.3658 20.7604C17.5325 21.4355 19 20.6038 19 19.2674Z" stroke="#3e3e47" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>           
+              <svg (click)="postdetailsData?._id && readlist(postdetailsData?._id)" width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" transform="matrix(1, 0, 0, 1, 0, 0)rotate(0)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.43200000000000005"></g><g id="SVGRepo_iconCarrier"> <path d="M19 19.2674V7.84496C19 5.64147 17.4253 3.74489 15.2391 3.31522C13.1006 2.89493 10.8994 2.89493 8.76089 3.31522C6.57467 3.74489 5 5.64147 5 7.84496V19.2674C5 20.6038 6.46752 21.4355 7.63416 20.7604L10.8211 18.9159C11.5492 18.4945 12.4508 18.4945 13.1789 18.9159L16.3658 20.7604C17.5325 21.4355 19 20.6038 19 19.2674Z" stroke="#3e3e47" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>           
               <!-- <svg width=" 45px" height="45px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M15.0309 3.30271C13.0299 2.8991 10.9701 2.8991 8.96913 3.30271C6.66186 3.76809 5 5.82231 5 8.20894V18.6292C5 20.4579 6.9567 21.596 8.51221 20.6721L11.3451 18.9895C11.7496 18.7492 12.2504 18.7492 12.6549 18.9895L15.4878 20.6721C17.0433 21.596 19 20.4579 19 18.6292V8.20894C19 5.82231 17.3381 3.76809 15.0309 3.30271Z" fill="#2a2a2d"></path> </g></svg> -->
 
             </div>
@@ -275,7 +275,7 @@
                 <header class="mb-4 lg:mb-6 not-format ">
                         <address class="flex items-center mb-6 not-italic ">
                             <div  class="inline-flex items-center mr-3 text-sm text-gray-900  ">
-                                <img *ngIf="postdetailsData?.userId?.image ||postdetailsData?.userId?.googleimage else image"  class="mr-4 w-12 h-12 rounded-full" [src]="postdetailsData?.userId?.googleimage ?postdetailsData?.userId?.googleimage : 'https://devbackend.irfanali.club/images/'+postdetailsData?.userId?.image"
+                                <img *ngIf="postdetailsData?.userId?.image ||postdetailsData?.userId?.googleimage else image"  class="mr-4 w-12 h-12 rounded-full" [src]="postdetailsData?.userId?.googleimage ?postdetailsData?.userId?.googleimage : apiurl+'/images/'+postdetailsData?.userId?.image"
                                     alt="Jese Leos">
                                         <ng-template #image>
                                         <img class="mr-4 w-12 h-12 rounded-full" src="https://www.pngmart.com/files/22/User-Avatar-Profile-Background-Isolated-PNG.png" alt="">
@@ -286,25 +286,22 @@
                                     <p class="text-base font-light text-gray-500 dark:text-gray-400">Graphic Designer,
                                         educator</p>
                                     <p class="text-base font-light text-gray-500 dark:text-gray-400"><time
-                                            pubdate></time>{{getDateRelative(postdetailsData.date)}}</p>
+                                            pubdate></time>{{getDateRelative(postdetailsData?.date)}}</p>
                                 </div>
                             </div>
                         </address>
                     </header>
-                  
                     <p>
                         <span class='text-black' *ngFor="let tag of postdetailsData?.tag ">
                             #{{tag?.title}}
                             &nbsp;</span>
                     </p>
                     <div class="flex  mb-6">
-                        <img [src]="'https://devbackend.irfanali.club/images/'+postdetailsData?.image" alt="">
+                        <img [src]="apiurl+'/images/'+postdetailsData?.image" alt="">
                     </div>
-                    <p class="contentr" [innerHTML]="postdetailsData.post"></p>
+                    <p class="contentr" [innerHTML]="postdetailsData?.post"></p>
                 </article>
             </div>
-            
-            
         </div>
     </div>
     
@@ -334,7 +331,7 @@
                           <div class="flex items-center">
                               <p class="inline-flex items-center mr-3 text-sm text-gray-900"><img *ngIf="comment?.userId?.image ||comment?.userId?.googleimage else image"
                                       class="mr-2 w-6 h-6 rounded-full"
-                                        [src]="comment?.userId?.googleimage ?comment?.userId?.googleimage : 'https://devbackend.irfanali.club/images/'+comment?.userId?.image"
+                                        [src]="comment?.userId?.googleimage ?comment?.userId?.googleimage : apiurl+'/images/'+comment?.userId?.image"
                                       alt="Michael Gough">
                                       <ng-template #image>
                                         <img class="mr-2 w-6 h-6 rounded-full" src="https://www.pngmart.com/files/22/User-Avatar-Profile-Background-Isolated-PNG.png" alt="">
