@@ -42,7 +42,7 @@
                         <label for="profileImg" class="labeltag position-absolute rounded-lg">
                             <div class="rounded-pill  dpHoverContent justify-content-center align-items-center" style="width: 55px; height: 55px; --bs-bg-opacity: 0.5; margin-top: 20px; margin: 20px;" ></div>
                         </label>       
-                        <input type="file" id="profileImg" name='image' (change)="uploadProfile($event)" class="d-none"> 
+                        <input type="file" id="profileImg" name='image' (change)="uploadProfile($event)" class="d-none" enctype="multipart/form-data"> 
                         <div class="font-medium ">
                             <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">{{userData.userName}}</h1>
                             <div class="text-sm text-gray-500 ">Joined in {{getdate(userData.joinedDate)}}</div>

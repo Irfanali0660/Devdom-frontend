@@ -53,46 +53,44 @@ export class UserDashbordComponent {
     } 
   }
   uploadProfile(event:Event){
-    const formData = new FormData();
+    // const formData = new FormData();
     try {
-      // formData.append('avatar', event.target.files[0]);
-      // Rest of the code to handle the FormData object
-
       const inputElement = event.target as HTMLInputElement;
-    if (inputElement?.files && inputElement.files.length > 0) {
       const formData = new FormData();
+    if (inputElement?.files && inputElement.files.length > 0) {
       formData.append('avatar', inputElement.files[0]);
       // Now you can use formData for uploading
-    }
+      
+    } 
+    this.service.updateproimg(formData,this.userData._id).subscribe((data:{success?:string,failed?:string,status?:number})=>{      
+      if(data.success){
+       this.getuser()
+       this.user()
+       Swal.fire({
+         toast: true,
+         position: 'top',
+         showConfirmButton: false,
+         icon: 'success',
+         timerProgressBar:false,
+         timer: 5000,
+         title: 'image added successfully'
+       })
+      }
+      else{
+       Swal.fire({
+         toast: true,
+         position: 'top',
+         showConfirmButton: false,
+         icon: 'warning',
+         timerProgressBar:false,
+         timer: 5000,
+         title: 'Error found'
+       })
+      }
+     })
     } catch (error) {
       console.error(error);
     }   
-    this.service.updateproimg(formData,this.userData._id).subscribe((data:{success?:string,failed?:string,status?:number})=>{      
-     if(data.success){
-      this.getuser()
-      this.user()
-      Swal.fire({
-        toast: true,
-        position: 'top',
-        showConfirmButton: false,
-        icon: 'success',
-        timerProgressBar:false,
-        timer: 5000,
-        title: 'image added successfully'
-      })
-     }
-     else{
-      Swal.fire({
-        toast: true,
-        position: 'top',
-        showConfirmButton: false,
-        icon: 'warning',
-        timerProgressBar:false,
-        timer: 5000,
-        title: 'Error found'
-      })
-     }
-    })
   }
   getuser(){
     this.store.dispatch(auth.getuser())
